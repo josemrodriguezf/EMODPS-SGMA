@@ -1,0 +1,279 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx}
+\usepackage{amsfonts}
+\usepackage{amsmath, amssymb}
+\usepackage{bm}
+\usepackage{nccmath}
+\usepackage{graphicx}
+\usepackage{titling}
+\usepackage{indentfirst}
+\usepackage{url}
+\usepackage{xurl}
+\usepackage[backend=biber,style=apa,date=year]{biblatex}
+\usepackage{csquotes}
+\usepackage{float}
+\usepackage{sectsty}
+\usepackage{enumitem}
+\usepackage{hyphenat}
+\usepackage{wrapfig}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{authblk}
+\usepackage[skip=0pt]{caption}
+\DeclareSourcemap{
+  \maps[datatype=bibtex]{
+      \map{
+        \step[fieldset=urldate, null]
+      }
+   }
+}
+\usepackage[top=0.5in, bottom=0.5in,left=1in,right=1in]{geometry} 
+\addbibresource{Bio.bib}
+
+\DeclareMathSymbol{\mh}{\mathord}{operators}{`\-}
+\renewcommand{\thetable}{S\arabic{table}}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\renewcommand{\theequation}{S\arabic{equation}}
+
+\date{}
+
+\begin{document}
+
+\begin{center}
+\Large
+Supplemental Information \\ EMODPS
+\end{center}
+
+\begin{center}
+José M. Rodríguez-Flores$^{1,*}$, Rohini S. Gupta $^2$, Harrison B. Zeff $^3$,\\ Patrick M. Reed $^2$, Josué Medellín-Azuara $^1$\\
+\end{center}
+
+\begin{center}
+\small
+$^1$Environmental Systems Program, University of California Merced, CA, USA\\
+$^2$Department of Civil and Environmental Engineering, Cornell University, NY, USA\\
+$^3$Department of Environmental Sciences and Engineering, University of North Carolina at Chapel Hill, NC, USA\\
+$^*$Corresponding Author: jrodriguezflores3@ucmerced.edu
+\end{center}
+
+\vspace{0.2cm}
+
+\section{Sustainable Management Criteria}
+
+\section{Cropland Evolution Semitropic}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{land_hist_semitropic.png}
+    \caption{Historical cropland of Semitropic WSD}
+    \label{fig:m1esh1}
+\end{figure}
+
+\section{Calibrated Hydro-Economic Model Performance}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{land_use.png}
+\label{fig:mesh1}
+\caption{Leave-one-out cross-validation results}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{water_use.png}
+\label{fig:mesh1}
+\caption{Leave-one-out cross-validation results}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{water_use_by_source.png}
+\label{fig:mesh1}
+\caption{Leave-one-out cross-validation results}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{gw_depth.png}
+\label{fig:mesh1}
+\caption{Leave-one-out cross-validation results}
+\end{figure}
+
+
+\section{Yield Elasticity to Water Use}
+
+Crop yield elasticity to water ($\tilde{y}_{i,water}$) represents the response of yield to changes in water applied, as percent change in yield to a percent change in applied water. To estimate this parameter we used two approaches, first for crops Alfalfa, Corn, Almonds (in Almonds and Pistachios category), and Wheat (in Grain category) we used the VIC-CropSyst model (\cite{malek_viccropsyst-v2_2017}) calibrated for a spatial grid in the study area and using different irrigation systems. Crop yield responses were estimated by reducing applied water (deficit irrigation), responses from VIC-CropSyst (V-CS) were later used to estimate the crop yield water elasticity ($\tilde{y}_{i,water}$) using following a sigmoidal yield response function (Equation A.3) described by \textcite{merel_regional_2014}. We fitted the sigmoidal response function using a nonlinear regression solving for $\alpha_{i,1},\alpha_{i,2},\alpha_{i,3}$, results are shown in SI. With the estimates from solving this regression the crop-specific yield response to water changes was later calculated using Equation A.4. using the reference water applied ($\tilde{x}_{i,water}$) and reference yield ($\tilde{y}_{i}$) used in the PMP calibration (average of the historical). 
+
+\begin{flalign}
+\hat{y}_{i,V-CS} = \dfrac{\alpha_{i,1}}{1 + exp\left(-\dfrac{\hat{x}_{i,water,V-CS}-\alpha_{i,2}}{\alpha_{i,3}}\right)}
+\end{flalign}
+
+\begin{flalign}
+\tilde{y}_{i,water} = \dfrac{\tilde{x}_{i,water}exp\left(-\dfrac{\tilde{x}_{i,water}-\bar{\alpha}_{i,2}}{\bar{\alpha}_{i,3}}\right)\hat{y}_{i}}{\bar{\alpha}_{i,1}\bar{\alpha}_{i,3}}
+\end{flalign}
+
+For the rest of the crops we used the applied water by crop category from \textcite{dwr_agricultural_2020} and yield from the most representative crop within each group using the land reported by \textcite{usda_national_2020}, both reported at a county level and using the data from 1998 to 2015. We estimated the elasticity through least squares (Equation A.5) as the slope between the natural logarithm of production and the natural logarithm of water used. We compared our results with other published values for crops in California, specially for San Joaquin Valley (\cite{garnache_social_2017,merel_regional_2014}). Results of both approaches are summarized in SI.   
+
+\begin{flalign}
+ln(\tilde{y}_{i,t}) = \tilde{y}_{i,water}ln(\tilde{x}_{i,water,t})
+\end{flalign}
+
+\section{Groundwater Depth Response}
+
+\begin{figure}[H]
+\centering
+    \includegraphics[width=0.6\textwidth]{Depth_change_semitropic}
+    \label{fig:mesh1}
+    \caption{Changes on distance to groundwater depth from C2VSIM-FG}
+\end{figure}
+
+Using groundwater pumping of the year $t$ and $t-1$ and water year type (Wet, Normal and Dry) of the year $t$ and $t-1$ as index variables we fitted different Bayesian linear modes. Pooled model (or fixed-effects) assigns same model parameters (intercept and slopes) across water year types. Un-pooled model assigns different parameters to each water year type as if water-year type is independent and have different intercepts and slopes. Finally, the Hierarchical model (or random-effects or multi-level) assigns different parameters to each water-year type varying intercepts or slopes (or both) across water-year type categories, this models enables the statistical model to learn how the agricultural pumping affects the groundwater depth change in each water year type while learning this effect from all the water wear types at the same time. 
+
+Groundwater pumping ($GWP_{t}$, $GWP_{t-1}$) and change of depth to groundwater ($\Delta{GWD}_t$) were normalized using the z-score normalization. Bayesian modeling uses a maximum entropy distribution to define the likelihood of the output, for this study we use Student's-t distribution to model the groundwater depth change probability distribution. The characteristics of the Student's t distribution makes it a more robust distribution to include extreme values and that can improve the MCMC sampling process. Additionally we need to define priors of the parameters (or unobserved variables). For this study we defined Gaussian priors for the intercept and slopes in all the model variations. As we expect that the relationship between groundwater depth change and change being positive for which case we centered the Gaussian distribution on the positive side for ${GWP}_t$ and a less informative distribution centered in 0 for ${GWP}_{t-1}$. Additionally an exponential distribution for the standard deviation priors  and Gamma distribution for the degrees of freedom of the Student-t's distribution prior. 
+
+\begin{itemize}[noitemsep,topsep=4pt]
+  \item P1: Pooled,   $\mu_t = \alpha + \beta_{1}GWP_{t}$
+  \item P2: Pooled with lag on pumping,   $\mu_t = \alpha + \beta_{1}GWP_{t} + \beta_{2}GWP_{t-1} $
+  \item U1: Unpooled, $\mu_t = \alpha_{WY_{t}} + \beta_{1,WY_{t}}GWP_{t}$
+  \item U2: Unpooled with lag on pumping, $\mu_t = \alpha_{WY_{t}} + \beta_{1,WY_{t}}GWP_{t} + \beta_{2,WY_{t}}GWP_{t} $
+  \item U3: Unpooled with lag on pumping and slope, $\mu_t =  \alpha_{WY_{t}} + \gamma_{WY_{t-1}} + \beta_{1,WY_{t}}GWP_{t} + \beta_{2,WY_{t}}GWP_{t}$
+  \item H1: Hirerarchical with varying intercept, $\mu_t = \alpha_{WY_{t}} + \beta_{1}GWP_{t}$
+  \item H2: Hirerarchical with varying intercept and varying slope, $\mu_t = \alpha_{WY_{t}} + \beta_{1,WY_{t}}GWP_{t}$
+  \item H3: Hirerarchical with varying slopes, $\mu_t = \alpha_t + \beta_{1,WY_{t}}GWP_{t} + \beta_{2,WY_{t}}GWP_{t}$
+  \item H4: Hirerarchical with varying intercept and slopes, $\mu_t = \alpha_{WY_{t}} + \beta_{1,WY_{t}}GWP_{t} + \beta_{2,WY_{t}}GWP_{t}$
+  \item H5: Hirerarchical with varying intercepts and slopes, $\mu_t = \alpha_{WY_{t}} + \gamma_{WY_{t-1}} + \beta_{1,WY_{t}}GWP_{t} + \beta_{2,WY_{t}}GWP_{t}$
+\end{itemize}
+
+Model variations include pooled, un-pooled and hierarchical models, using the Water Year Type as index variable. Models were fit using a Markov Chain Monte Carlo (MCMC) sampling method using the probabilistic programming Python package PyMC (\cite{salvatier_probabilistic_2016}). Model selection was done using the Leave-one-out Cross-validation (LOO-CV) as estimate of the out-of-sample predictive fit (\cite{vehtari_practical_2017}), selecting the model with the highest log-scale LOO-CV or with he best out-of-sample prediction (Figure B2). The LOO-CV validation results are summarized in the Figure S.2. Where the best model is the hirerarchical model with varying intercepts (H5), however the model with unpooled effects in intercepts and pumping (U3) was selected since is a simpler model and has a LOO closed to H5. Hence, we obtain similar predictive power for a more computational efficient model. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{model_comparison_calibration.png}
+\label{fig:mesh1}
+\caption{Leave-one-out cross-validation results}
+\end{figure}
+
+Table S1 shows the results from the model U3 summarizing the distribution of the posterior distribution of the parameters.
+
+\begin{center}
+\begin{tabular}{ |c|c|c|c|c| }
+ \hline
+ Parameter & Mean & Sd & HDI $2.5\%$ & HDI $97.5\%$ \\ 
+ \hline
+$\alpha_{1[Wet_{t}]}$ & 	-0.063 &	0.232 &	-0.478 &	0.405 		 \\
+$\alpha_{1[Normal_{t}]}$ & 0.041 &	0.223 &	-0.379 &	0.501 	 \\
+$\alpha_{1[Dry_{t}]}$ & 	 0.079 &	0.217 &	-0.356 &	0.494	 \\
+$\gamma_{1[Wet_{t}]}$ & 	-0.057 	& 0.224 &	-0.481 &	0.393 	 \\
+$\gamma_{1[Normal_{t}]}$ & 0.159 &	0.225 &	-0.285 &	0.588 \\
+$\gamma_{1[Dry_{t}]}$ & -0.041 &	0.217 &	-0.453 &	0.400 	 \\
+$\beta_{1[Wet_{t \mh 1}]}$ & 1.207 &	0.107 &	0.995 &	1.419 	 \\
+$\beta_{1[Normal_{t \mh 1}]}$ 	& 0.829 &	0.148 &	0.550 &	1.126	\\
+$\beta_{1[Dry_{t \mh 1}]}$ & 0.817 &	0.088 &	0.649 &	0.991 \\
+$\beta_{2[Wet_{t \mh 1}]}$ & -0.757 	& 0.100 & -0.940 & 	-0.551 	 \\
+$\beta_{2[Normal_{t \mh 1}]}$ & -0.807 &	0.141 &	-1.094 & -0.543 	\\
+$\beta_{2[Dry_{t \mh 1}]}$ & -0.336 	& 0.088 & 	- 0.507 &  -0.159 \\
+$\sigma$ & 0.235 & 	0.037 & 0.169 & 	0.310 \\
+$\nu$ 	& 20.470 & 	12.859 & 2.469 &  	45.244 \\
+\hline
+\end{tabular}
+\captionof{table}{Marginal posterior distributions of the parameters of Groundwater Depth Response}
+\end{center}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{gw_depth_response_posterior_2.png}
+\label{fig:mesh1}
+\caption{Posterior Distributions of the parameters, where 0 is Wet Year, 1 is Normal Year and 2 is Dry Year}
+\end{figure}
+
+\section{Borg Parameters and Hypervolume from Random Seeds}
+
+\begin{center}
+\begin{tabular}{ |c|c| }
+ \hline
+ Objective & Epsilon \\ 
+ \hline
+Maximize Average Total Revenues (O1) & 30  \\
+Minimize Average Groundwater Depth (O2) & 1.8 \\
+Maximize 5th Percentile Revenue in a year (O3) & 1 \\
+Minimize 95th Groundwater Depth Change in a year (O4) & 0.9 \\
+Reliability (O5) & 0.01 \\
+\hline
+\end{tabular}
+\captionof{table}{Epsilon values used for the Borg MOEA}
+\end{center}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Borg_Seeds_Hypervolume.png}
+    \caption{Hypervolume from 10 random seeds used in Borg MOEA}
+    \label{fig:m1esh1}
+\end{figure}
+
+\section{Supplemental Figures for Results and Robustness Analysis}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{robust_plicies_3d.png}
+    \caption{Selection of three Robust Policies}
+    \label{fig:m1esh1}
+\end{figure}
+
+
+\begin{center}
+\begin{tabular}{ |c|c|c|c|c|c| }
+ \hline
+ Solution & O1 & O2 & O3 & O4 & O5 \\ 
+ \hline
+X &  13,579 & 96.9& 279.4 & 3.5 & 21\%\\
+Y & 13,441 & 94 & 275 & 3.6 & 32\% \\
+Z &  13,512 & 94 & 278.81 & 4.5 & 34\% \\
+\hline
+\end{tabular}
+\captionof{table}{Performance of the selected Robust Policies shown in Figure S10}
+\end{center}
+
+High sd 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{performance_robust_policies.png}
+    \caption{Evolution of Decisions in the Control Policy and food-water system performance from Robust policies}
+    \label{fig:m1esh1}
+\end{figure}
+
+To correct with MIROC 8.5
+change image
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{performance_metrics_driest_robust.png}
+    \caption{Evolution of Decisions in the Control Policy and food-water system performance from Robust policies}
+    \label{fig:m1esh1}
+\end{figure}
+
+MEdian Average MIROC 4.5
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{robust_policies_wet.png}
+    \caption{Evolution of Decisions in the Control Policy and food-water system performance from Robust policies}
+    \label{fig:m1esh1}
+\end{figure}
+
+Wet CNRM-CM5 8.5
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{robust_policies_performance_max_supplies.png}
+    \caption{Evolution of Decisions in the Control Policy and food-water system performance from Robust policies}
+    \label{fig:m1esh1}
+\end{figure}
+
+
+
+
+
+\newpage
+\printbibliography
+
+\end{document}
