@@ -57,17 +57,27 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-
-\title{Balancing Groundwater Sustainability and Agricultural Economic Goals through Evolutionary Direct Policy Search}
-
-\author{José M. Rodríguez-Flores, Rohini Gupta, Harrison B. Zeff, Patrick M. Reed, Josué Medellín-Azuara}
+\title{Implementing adaptive operating policies to achieve economic, and groundwater sustainability goals in agriculture using Evolutionary Multi-Objective Direct Policy Search}
 
 \date{}
 
 \begin{document}
 
 \maketitle
+
+\vspace{-3cm}
+
+\begin{center}
+José M. Rodríguez-Flores$^{1,*}$, Rohini S. Gupta $^2$, Harrison B. Zeff $^3$,\\ Patrick M. Reed $^2$, Josué Medellín-Azuara $^1$\\
+\end{center}
+
+\begin{center}
+\small
+$^1$Environmental Systems Program, University of California Merced, CA, USA\\
+$^2$Department of Civil and Environmental Engineering, Cornell University, NY, USA\\
+$^3$Department of Environmental Sciences and Engineering, University of North Carolina at Chapel Hill, NC, USA\\
+$^*$Corresponding Author: jrodriguezflores3@ucmerced.edu
+\end{center}
 
 
 \section*{Abstract}
@@ -76,7 +86,7 @@ The framework used in this study enables us to find policy strategies that are m
  
 \section{Introduction}
 
-As irrigation water demand increases and droughts become more frequent, agricultural regions in the world are relying more on groundwater. In Mediterranean climate regions, as California, and arid and semi-arid regions with variable precipitation, groundwater is a reliable source of water and key for water security and food security (\cite{priyan_issues_2021,malmgren_groundwater_2022}). Aquifer systems flux dynamics are sensitive to changes in temperatures, precipitation and surface water flows, that are impacted with climate change (\cite{w,cuthbert_global_2019}). However the largest impact from climate change is indirectly through changes in land use and water demand by human activities (\cite{taylor_ground_2013}). Globally water from aquifers account for 43 percent of the total irrigation (\cite{siebert_groundwater_2010}), which is expected to increase as surface water scarcity increases (\cite{wada_nonsustainable_2012}). Additionally the lack of groundwater management in agriculture have lead to stress and depletion of aquifers (\cite{dalin_groundwater_2017, wada_global_2010}), affecting dependant ecosystems (\cite{bierkens_non-renewable_2019}), limiting its access to shallow water-table reliant communities (\cite{perrone_dry_2017,pauloo_domestic_2020}), reducing groundwater quality, among others. For this reason groundwater management and long-term planing is necessary to stop the groundwater depletion trajectory that has been observed globally (\cite{gorelick_global_2015}).
+As irrigation water demand increases and droughts become more frequent, agricultural regions in the world are relying more on groundwater. In Mediterranean climate regions, as California, and arid and semi-arid regions with variable precipitation, groundwater is a reliable source of water and key for water security and food security (\cite{priyan_issues_2021,malmgren_groundwater_2022}). Aquifer systems flux dynamics are sensitive to changes in temperatures, precipitation and surface water flows, that are impacted with climate change (\cite{wu_divergent_2020,cuthbert_global_2019}). However the largest impact from climate change is indirectly through changes in land use and water demand by human activities (\cite{taylor_ground_2013}). Globally water from aquifers account for 43 percent of the total irrigation (\cite{siebert_groundwater_2010}), which is expected to increase as surface water scarcity increases (\cite{wada_nonsustainable_2012}). Additionally the lack of groundwater management in agriculture have lead to stress and depletion of aquifers (\cite{dalin_groundwater_2017, wada_global_2010}), affecting dependant ecosystems (\cite{bierkens_non-renewable_2019}), limiting its access to shallow water-table reliant communities (\cite{perrone_dry_2017,pauloo_domestic_2020}), reducing groundwater quality, among others. For this reason groundwater management and long-term planing is necessary to stop the groundwater depletion trajectory that has been observed globally (\cite{gorelick_global_2015}).
 
 Multiple challenges inherent to coupled food-water systems (\cite{polhill_modelling_2016}) are present in groundwater management. First, food-water systems are dynamic, each component evolve as well as their feed-backs (\cite{filatova_regime_2016}), thus management decisions should adapt as the coupled system evolves. Second, water management policies may result in trade-offs between economic and sustainability objectives (\cite{mcdermid_minimizing_2021,torhan_tradeoffs_2022,young_hydrologic-economic_2021,stone_economic_2022}). Lastly, there are intrinsic uncertainties sometimes considered deep uncertainties or with no knowledge of their distribution (\cite{stirling_keep_2010}) that need to be accounted, including uncertain surface water supplies, crop prices, among others.  
 
@@ -165,12 +175,6 @@ GWD_{t} = GWD_{t-1} + \overline{\Delta GWD}_{t-1}
 \subsection{Stochastic time series}
 
 In order to run the model dynamically we build Monte Carlo time series for economic and hydrologic conditions that feed the Hydro-economic model. Each time series starts at $t_{0}=2016$. In our analysis we included simulated surface water supplies to the irrigation district (Figure 3) from the California’s Food-Energy-Water System simulation model (CALFEWS) (\cite{zeff_californias_2021}). These were simulated with down-scaled data from seven of the ten Global Circulation Models (GCMs) suggested by \textcite{pierce_climate_2018}: CCSM4, MIROC5, CanESM2, CNRM-CM5, GFDL-CM3, HadGEM2-CC and HadGEM2-ES, and using the Representative Concentration Pathway (RCP) 4.5 (moderate scenario) and 8.5 (high emissions scenario). The surface water deliveries were scaled using the average deliveries in the historical for each GCM and RCP and the observed historical values. This study does not account on changes to crop yields and evapotransporation from climate change due to the lack of information. 
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.7\textwidth]{gcm_surface_water.png}
-    \caption{Distribution of historical (1999-2015) and projected surface water deliveries from CALFEWS (2016-2045) (\cite{zeff_californias_2021})} \label{fig:SWSemitropic}
-\end{figure}
 
 Additionally, we considered uncertainties on economical variables and calibration parameters of the PMP model, summarized in Table 1. Crop prices $p_{i,t}$ were sampled using the historical data from 1980 to 2020 (\cite{usda_national_2020}), price of electricity ($\omega_{E,t}$) was sampled from the historical (2008-2021) reported by the Pacific Gas and Electricity Company (PG\&E) for small and large agricultural users. Price of surface water ($\omega_{SW,t}$) was sampled from rates reported in different water-year types using surface water supply to define the water-year type category. Finally a sample from the posterior distribution of the calibration parameters $\theta_{i}$ is sampled.
 
@@ -344,7 +348,7 @@ O_{5} \geq 0.2
 
 \subsection{Robustness Analysis}
 
-Solutions in the Pareto front are heterogeneous control policies with different levels of trade-offs among objectives from which stakeholders can visualize their preferences and find acceptable policies. However, given the large number of results might be hard to understand and summarize the performance of the policies across multiple states of the world (\cite{herman_how_2015}). Robustness analysis commonly used in robust decision making frameworks (\cite{marchau_decision_2019}), can help to select policies based on stakeholders preferences or constraints on expected performance of the system (\cite{kasprzyk_many_2013}). Different metrics can be used to measure the robustness of each control policy representing different farmers and water managers acceptability thresholds and their perception of risk (\cite{mcphail_robustness_2018}), filtering the solutions. For this study we selected the domain criterion satisfying metric (\cite{schneller_decision_1983}) that quantifies the fraction of scenarios that achieve the minimum performance by stakeholders. 
+Solutions in the Pareto front are heterogeneous control policies with different levels of trade-offs among objectives from which stakeholders can visualize their preferences and find acceptable policies. However, given the large number of results might be hard to understand and summarize the performance of the policies across multiple states of the world (\cite{herman_how_2015}). Robustness analysis commonly used in robust decision making frameworks (\cite{marchau_decision_2019}), can help to select policies based on stakeholders preferences or constraints on expected performance of the system (\cite{kasprzyk_many_2013}), filtering the large set of solutions. Different metrics can be used to measure the robustness of each control policy representing different farmers and water managers acceptability thresholds and their perception of risk (\cite{mcphail_robustness_2018}). For this study we selected the domain criterion satisfying metric (\cite{schneller_decision_1983}) that quantifies the fraction of scenarios that achieve the minimum performance by stakeholders from a higher set of states of the world than the ones used in the EMODPS search. 
 
 
 
@@ -354,11 +358,11 @@ The search of optimal RBFs parameters in EMODPS is a non-convex problem (\cite{g
 
 \subsection{Experiment Algorithms}  
 
-For this study we use the Borg MOEA (\cite{hadka_borg_2013}), a self adaptive algorithm that uses probabilistic operators as $\epsilon$-dominance, adaptive population sizing and time continuation through $\epsilon$-progress. Borg MOEA has shown have better time efficiency, scalability and controllability, as well as less sensitive to its parameterizations compared to other MOEA algorithms (\cite{reed_evolutionary_2013}).  These characteristics and its support to different parallelization variants makes it widely applicable to complex problems with different scales and computational demands (\cite{hadka_large-scale_2015}). Since Borg MOEA is a stochastic algorithm we estimate Pareto-front solutions using ten different random seeds using the master-worker parallel configuration of Borg (\cite{hadka_large-scale_2015}). $\epsilon$-values (resolution) for each objective and the Borg MOEA parameter values are summarized in SI Table S2 and S3. 
+For this study we use the Borg MOEA (\cite{hadka_borg_2013}), a self adaptive algorithm that uses probabilistic operators as $\epsilon$-dominance, adaptive population sizing and time continuation through $\epsilon$-progress. Borg MOEA has shown have better time efficiency, scalability and controllability, as well as less sensitive to its parameterizations compared to other MOEA algorithms (\cite{reed_evolutionary_2013}).  These characteristics and its support to different parallelization variants makes it widely applicable to complex problems with different scales and computational demands (\cite{hadka_large-scale_2015}). Since Borg MOEA is a stochastic algorithm we estimate Pareto-front solutions using ten different random seeds using the master-worker parallel configuration of Borg (\cite{hadka_large-scale_2015}) with the default parameters. $\epsilon$-values (resolution) for each objective are summarized in SI Table S2 and S3. 
 
 The economic model (Equations 1-7) was formulated using the Python package Pyomo (\cite{hart_pyomo_2011}) and solved using the non-linear programming solver IPOPT (\cite{wachter_implementation_2006}). The decision variables in the economic model are the allocation of land and water (surface water and groundwater) to seventeen crop groups resulting in 68 decision variables by each time step $t$. Additionally at each time step a posterior predictive sample of groundwater depth change with 400 samples was estimated using the model and trace generated using the probabilistic programming Python package PyMC  (\cite{salvatier_probabilistic_2016}).
 
-We performed the bi-level optimization process for an ensemble of N = 100 Monte Carlo realizations and T = 30 years for 50,000 candidate policy trials (function evaluations). A structure of M=4 RBFs (Equation 11) was selected given its good performance, resulting in 40 decision variables in the vector $\Psi$ to be optimized with Borg MOEA. The final pareto-set solutions were selected from the random seed with the highest hypervolume (\cite{hadka_large-scale_2015}), shown in the Figure S4 (SI 5). The selected Pareto-set was later assessed in a larger set of Monte Carlo ensemble of N = 400 to inform the robustness analysis. All the computational experiments were performed in the MERCED cluster of the University of California Merced. 
+We performed the bi-level optimization process for an ensemble of N = 100 Monte Carlo realizations and T = 30 years for 50,000 candidate policy trials (function evaluations). A structure of M=4 RBFs (Equation 11) was selected given its good performance, resulting in 40 decision variables in the vector $\Psi$ to be optimized with Borg MOEA. The final pareto-set solutions were selected from the random seed with the highest hypervolume (\cite{hadka_large-scale_2015,reed_evolutionary_2013}), shown in the Figure S10 of the SI. The selected Pareto-set was later assessed in a larger set of Monte Carlo ensemble of N = 400 to inform the robustness analysis. One limitation of the bi-level optimization is the high computational demand that limited the number of Monte Carlo resolutions and function evaluations, how ever as shown the random seeds hypervolume performance they converged at half of the evaluations. All the computational experiments were performed in the MERCED cluster of the University of California Merced. 
 
 
 \section{Results and Discussion}
@@ -397,29 +401,29 @@ During dry years control policies allow pumping to off-set lack of surface water
 \end{figure}
 
 Selecting different solutions along the Pareto approximate set enable us to asses their performance and provide insight of potential trade-offs of implementing management decisions. As shown in Sub-Figure 6 (g) implementing the control policy Y results in a lower average groundwater depth and larger number of years where the "measurable objective" is met. However, solutions X and Z achieved the measurable objective in wet years and also allowed having higher cropland than solution Y. 
-We can observe that the control policies stopped the decline in groundwater depth observed in the historical (Figure 2), allowing the groundwater depth to reach a level where it can recover during wet years and be able to meet the "measurable objective". This behaviour is similar to what the state's management criteria suggest with the "minimum threshold", however as shown by the results it will only feasible to maintain the groundwater depth within the margin of operational flexibility if land and water management is flexible enough and the rate of years that the groundwater depth reaches the measurable objective will also depend on the capacity to limit pumping during dry years and maximize recovery in wet years. If these conditions are not met policies may fail to stop the  as observed in previous droughts and the ongoing drought that started in 2020, shown by \textcite{liu_groundwater_2022}.
+One key insight is that control policies stopped the decline in groundwater depth observed in the historical (Figure 2), allowing the groundwater depth to reach a maximum depth level where it can recover during wet years and from where is able to meet the measurable objective. Depending on the control policy the maximum level and the number of years that achieve the measurable objective change. This suggest that GSAs can maintain the groundwater depth bellow the minimum threshold and this level conditions the recovery and number of years when the groundwater depth level is at the measurable objective. However, policies need to be flexible enough to allow groundwater depth to recover during wet years opposite to what has been observed during the last decade (\cite{liu_groundwater_2022}).
 
 \subsection{Robustness Analysis}
 
-As we saw different policies can result in different system performances, and selecting policies for further exploration can be difficult given the large set of solutions. How ever by using the domain criterion satisfying measure we could reduce the solution space and focused on policies that meet desirable minimum criteria that the GSA and farmers can define under potential future scenarios. For this study we used the define an example of performance criteria and rates of success defined in Table 4 that a policy need to achieve to be consired robust.  
-
+As showed different policies can result in different system performances, and selecting policies for further exploration can be difficult given the large set of solutions. However by using the domain criterion robustness metric we can reduce the solution space and focused on policies that meet desirable minimum criteria that the GSA and farmers can define. To illustrate this process we defined an example of performance criteria and rates of success, shown in Table 4, all of which a control policy must achieve to be considered robust. These performance criteria include the measurable objective, or minimum groundwater depth in a year, and the minimum threshold, or maximum groundwater depth in a year. Additionally, a minimum perennial trees land in a year is defined to be at least 50\% from the baseline (33,161 ha). 
 
 \begin{center}
-\begin{tabular}{ |c|c|c| }
+\begin{tabular}{ |c|c|c|c| }
  \hline
- Variable Description & Threshold Value & Rate of Success \\ 
+ Variable Description & Units & Threshold Value & Rate of Success \\ 
  \hline
-Minimum Revenue in a year   (M USD/year)  & > 270 & > 70\% \\
-Minimum Total Revenue  (M USD)  & > 12,500 & > 80\% \\
-Minimum Groundwater Depth in a Year (m/year)  & < 91.4 & > 20\%  \\
-Maximum Groundwater Depth in a Year (m/year)  & < 115 & > 99\%  \\
-Minimum Perennial Trees Land in a year (hectares/year)  & > 50\% baseline & > 90\%  \\
+Minimum Revenue in a year  & M USD/year  & > 270 & > 70\% \\
+Minimum Total Revenue  & M USD  & > 12,500 & > 80\% \\
+Measurable Objective & m/year  & < 91.4 & > 20\%  \\
+Minimum Threshold & m/year  & < 115 & > 99\%  \\
+Minimum Perennial Trees Land in a year & hectares/year & > 16,580 & > 90\%  \\
 \hline
 \end{tabular}
-\captionof{table}{Criteria for selection of Robust policies}
+\captionof{table}{Performance Criteria for selection of robust policies}
 \end{center}
 
-Following this criteria we found that only twelve out four hundred twenty six solutions met the performance criteria and rate of success. The performance of these polices can be explored, as we did for two robust policies(Figure 8). The one with the largest total average revenue and the one with the lowest average groundwater depth using the 400 Monte Carlo resolutions. Results can be found in SI 7, from assessing their performance using the surface water deliveries with highest standard deviation, lowest average deliveries and largest average deliveries. 
+Following these criteria we found twelve out four hundred twenty six robust policy solutions. These polices can be furthered explored to asses their performance under states of the world that can be of interest of stakeholders. To continue this exploration we selected two robust policies (Figure 8), the policy with the largest total average revenue and the one with the lowest average groundwater depth from the 400 Monte Carlo resolutions.
+The performance of these policies was later assessed using the using the surface water deliveries with highest standard deviation, lowest average surface deliveries (dry scenario) and largest average deliveries (wet scenario). Results can be found in SI 7, where we show that even in the driest conditions robust policies are able to stop the declining of ground water depth levels, maintaining the level within the margin of operational flexibility defined in the robustness criteria and achieving the measurable objective in wet years. 
 
 \begin{figure}[H]
     \centering
@@ -429,13 +433,15 @@ Following this criteria we found that only twelve out four hundred twenty six so
 
 \subsection{Limitations and Future Work}
 
-Salinity other mechanisms possible expansion of water supplies 
+Other climate change impacts expected in the region such as impacts on crop yields and increase on potential evapotranspiration were not included. Additionally, surface water delivers used in this study were obtained from CALFEWS (\cite{zeff_californias_2021)} which may have other intrinsic uncertainties and assumptions. The groundwater depth response used in the study does not reflect the complexity of the aquifer dynamics, such as lateral flows with other basins, dynamics with surface water, among others, that C2VSim-FG does include. However, the used response function enabled us to capture the general trend and behaviour from groundwater pumping in the district. Crop prices used in the computational experiment were sampled from the historical and may not reflect future conditions, which are difficult to forecast given their variability and dependence on global markets. 
+
+Future studies should consider supply-side management strategies, such as managed aquifer recharge and water markets that can potentially increase the groundwater depth recovery during wet years and reduce pumping during dry years. Additionally, other sustainability metrics that are included in the state legislation can be considered in future studies. Finally, this study used district wide performance in its formulation which can have nuances within the district future studies should analyse the trade-offs considering .
+ 
 
 \section{Conclusions}
 
 \section*{Acknowledgements}
 
-This work was supported by the NSF INFEWS program grant number 1639268 (P.I. Charaklis). José M. Rodríguez-Flores was partially supported by the UC Mexus-CONACYT scholarship. This research was conducted using MERCED cluster (NSF-MRI, \#1429783) at the Cyberinfrastructure and Research Technologies (CIRT) from the University of California Merced. We acknowledge the support from students from the Water Systems Management Lab at UC Merced who supported with data collection Spencer A. Cole, Elisa Gonzales and Kimberly Parra. VIC-CropSyst results used to estimate the crop yield elasticity to water were provided by Tina Karimi. The model C2VSim-FG outputs were provided by Jorge A. Valero Fandiño. The views expressed in this work represent those of the authors and do not necessarily reflect the views or policies of the Semitropic WSD or the California Department of Water Resources.
 
 \section*{Data Availability Statement}
 
