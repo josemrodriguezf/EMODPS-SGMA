@@ -227,7 +227,7 @@ Dynamic land and groundwater management decisions made at every yearly step $t$ 
 u_{t}^D = P^{D}(I_{t'}|\psi^{D})
 \end{align}
 
-In direct policy search, the use of RBFs has been shown to be an efficient way to represent complex sequential decisions. Recent applications include lake pollution control \citep{quinn_direct_2017}, reservoir operation \citep{giuliani_universal_2014, zatarain_salazar_balancing_2017,giuliani_state---art_2021}, sea-level rise protection \citep{garner_using_2018}, and financial risk management in water-energy systems \citep{gupta_can_2020,hamilton_stream_2022}. For this study we define the control policy function $P^D$ as set of cubic radial basis functions given by Equation 11.
+In direct policy search, the use of RBFs has been shown to be an efficient way to represent complex sequential decisions. Recent applications include lake pollution control \citep{quinn_direct_2017}, reservoir operation \citep{giuliani_universal_2014, zatarain_salazar_balancing_2017,giuliani_state---art_2021}, sea-level rise protection \citep{garner_using_2018}, flood risk management \cite{wang} and financial risk management in water-energy systems \citep{gupta_can_2020,hamilton_stream_2022}. For this study we define the control policy function $P^D$ as set of cubic radial basis functions given by Equation 11.
 
 \begin{align}
 u_{t}^D = \phi^{D}\left(\sum_{m=1}^M w_{m}^D \sum_{j=1}^J \left\lvert\dfrac{[I_{t'}]_{j}-c_{j,m}}{r_{j,m}}\right\rvert^{3}\right)
