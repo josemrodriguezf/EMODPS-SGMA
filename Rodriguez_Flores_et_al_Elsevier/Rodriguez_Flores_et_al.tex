@@ -105,7 +105,7 @@ Groundwater sustainability \sep Irrigation management \sep Bi-level Optimization
 
 \maketitle
 
-\section{Introduction}
+\section{Introduction}\label{sct:1}
 
 As irrigation water demand increases due to increased crop acreage and droughts become more frequent, agricultural regions in the world are relying more on groundwater to make up for surface water losses. In Mediterranean climate regions, such as California, groundwater is the primary water source for buffering drought impacts and food production \citep{malmgren_groundwater_2022,priyan_issues_2021}. Aquifer systems’ dynamics are sensitive to changes in temperature, precipitation, and surface water flows, that can be directly impacted by climate change \citep{cuthbert_global_2019,wu_divergent_2020}. However, one of the largest impacts from climate change are the resulting adaptation driven changes in land use and shifting water demands from human activities \citep{taylor_ground_2013}. Globally, groundwater provides 43 percent of the total irrigation needs \citep{siebert_groundwater_2010}, and its share is expected to increase as surface water scarcity increases \citep{wada_nonsustainable_2012}. In California, the limits in coordinated and regulated groundwater management in irrigation-based agriculture have led to decades of increasing stress and depletion of the state's aquifers \citep{vasco_satellite-based_2019}, affecting dependent ecosystems \citep{bierkens_non-renewable_2019}, limiting its access to shallow water-table reliant communities \citep{pauloo_domestic_2020,perrone_dry_2017}, increasing land subsidence \citep{smith_groundwater_2020}, reducing groundwater storage and storativity \citep{alam_post-drought_2021}, and degradation of water quality \citep{levy_critical_2021}. 
 
@@ -124,7 +124,7 @@ Multiple challenges that are inherent to coupled food-water systems \citep{polhi
 
 Secondly, finding optimal groundwater management policies is a nontrivial task. Most formulations to do so are characterized by non-linearity and non-convexity, and must consider a broad array of objectives that balance trade-offs across groundwater sustainability agencies and farmers (i.e., maximizing economic revenues and minimizing distance to groundwater). Heuristic methods such as  multi-objective evolutionary algorithms (MOEAs) has been demonstrated in their ability to address these complexities and discover high quality approximations of optimal trade-offs among objectives in the Pareto-front \citep{reed_evolutionary_2013}. Thus, the resulting Pareto optimal approximate set of solutions are those where there is not a solution with a better performance of an objective without degrading the performance in the remaining objectives \citep{coello_evolutionary_2007}. Even though heuristic optimization frameworks hold promise for support decision making in agriculture \citep{memmah_metaheuristics_2015}, there are few applications pertaining to larger and more complex inter-connected food-water systems. Prior studies show the applicability of MOEAs in groundwater use controls \citep{afshar_multi-objective_2020,salehi_shafa_multi-objective_2023,habibi_davijani_optimization_2016,mehrabi_assessment_2021,banihabib_development_2019,hesamfar_simulation-based_2023} and this study expands the application of MOEAs to find coordinated optimal land and water use decisions to achieve groundwater sustainability and economic objectives in agriculture.  
 
-As reviewed by \citet{thomann_adaptive_2020}, there is a need for new groundwater management frameworks that are dynamic and adaptively responsive to changes in observed system changes. In this study, we draw on Direct Policy Search (DPS) introduced by \citet{rosenstein_robot_2001} as a parameterization-simulation-optimization formulation where in a control policy is parameterized using non-linear universal functions as neural networks and radial basis functions. In DPS, the parameters of the control policy function are optimized rather than the decisions themselves using a simulation-optimization process to search for optimal operations for a system. The application of DPS to water systems was introduced by \citet{koutsoyiannis_evaluation_2003} in reservoir operations and subsequently extended to Evolutionary Multi-objective Direct Policy Search (EMODPS) formalized by \citet{giuliani_coupled_2016}. As reviewed by \citet{giuliani_state---art_2021}, the EMODPS framework has proven capable of discovering optimal dynamic adaptive control policies in a broad array of applications with recent examples in multi-reservoir systems \citep{macian-sorribes_inferring_2019} and complex coupled water-energy systems \citep{gupta_can_2020,doering_diagnosing_2021,hamilton_stream_2022}. Additionally, EMODPS aids in the direct use of simulation models and overcoming the "curse of dimensionality" inherent to other control frameworks as Stochastic Dynamic Programming that have been previously applied in agriculture \citep{taylor_dynamic_1993}. 
+As reviewed by \citet{thomann_adaptive_2020}, there is a need for new groundwater management frameworks that are dynamic and adaptively responsive to changes in observed system changes. In this study, we draw on Direct Policy Search (DPS) introduced by \citet{rosenstein_robot_2001} as a parameterization-simulation-optimization formulation where in a control policy is parameterized using non-linear universal functions as neural networks and radial basis functions. In DPS, the parameters of the control policy function are optimized rather than the decisions themselves using a simulation-optimization process to search for optimal operations for a system. The application of DPS to water systems was introduced by \citet{koutsoyiannis_evaluation_2003} in reservoir operations and subsequently extended to Evolutionary Multi-objective Direct Policy Search (EMODPS) formalized by \citet{giuliani_universal_2014}. As reviewed by \citet{giuliani_state---art_2021}, the EMODPS framework has proven capable of discovering optimal dynamic adaptive control policies in a broad array of applications with recent examples in multi-reservoir systems \citep{macian-sorribes_inferring_2019} and complex coupled water-energy systems \citep{gupta_can_2020,doering_diagnosing_2021,hamilton_stream_2022}. Additionally, EMODPS aids in the direct use of simulation models and overcoming the "curse of dimensionality" inherent to other control frameworks as Stochastic Dynamic Programming that have been previously applied in agriculture \citep{taylor_dynamic_1993}. 
 
 In this study, we formulate a 5-objective application of EMODPS where the resulting irrigation control policies utilize state information (e.g., surface water availability, groundwater depth and irrigation demand) to adaptively inform decisions, related to pumping and land use controls as well as pricing pumping, for a given production year at the GSA level. The resultant Pareto approximate set of solutions represent control policies that can improve in their performance in objective by trading off reduced performance in one or more other objectives. The 5-objectives considered in this study include: maximize revenue from food production, minimize distance to groundwater (groundwater depth), maximize minimum economic revenue, minimize maximum groundwater depth change and maximize the number of years the groundwater level is at or bellow the groundwater level requirement. We further test the robustness of the resulting irrigation control policies \citep{groves_robust_2019,lempert_making_2013,kasprzyk_many_2013} by assessing how well they perform for a broader sampling of system state conditions or states of the world (SOWs). Exploratory modeling-based evaluation of systems' robustness is being used across a broad array complex water management application contexts balancing human demand, economic objectives, sustainability and engineered performance \citep{graveline_combining_2020,huskova_screening_2016,miro_adaptive_2021,hadjimichael_defining_2020,shuai_robust_2022,moallemi_exploratory_2020,bertoni_discovering_2019,quinn_exploring_2018,trindade_deeply_2019,shuai_robust_2022}. Building off these examples, we identify robust irrigation control policies that achieve performance goals for groundwater depth and economic revenues at the GSA level. 
 
@@ -146,13 +146,11 @@ The study area of this research is the Semitropic Water Storage District (SWSD),
 
 In coupled food-water systems, Hydro-Economic Models have been used as decision support modeling tools to assess water policy and climate change adaptation decisions \citep{ward_hydroeconomic_2021,harou_hydro-economic_2009}. HEMs are able to abstract stakeholders decisions (e.g., farmers) and hydrologic dynamics, as well as their feedback, by integrating economic models with hydrologic response functions \citep{harou_hydro-economic_2009}. They have played an important role in supporting human and natural systems modeling studies focused on better understanding interdependent economic revenues and aquifer dynamics, as shown by \citet{macewan_hydroeconomic_2017}, \citet{afshar_multi-objective_2020}, \citet{graveline_combining_2020} and \citet{rodriguez-flores_global_2022}. Additionally, HEMs have proven to be flexible in assisting assessments of the performance of water management policies under different climate scenarios across a range of space and time scales \citep{partida_hydro-economic_2023}.
 
-\subsubsection{Economic model}
+\subsubsection{Economic model}\label{sct:hem}
 
 The SWSD's food production system is modeled using a hydro-economic model \citep{harou_hydro-economic_2009} that represents a yearly net profit maximization at the irrigation district level. With this economic model, we can model land and water (surface and groundwater) allocation decisions for crop production. This model assumes that farmers make production decisions to maximize their net revenues by considering crop prices, surface water availability, price of surface water, price of electricity and water management policies. The mathematical model is based on Positive Mathematical Programming (PMP) formalized by \citet{howitt_calibration_1995}. PMP is a HEM method that uses observed agricultural production behavior to define a constraint non-linear optimization model, used to simulate water allocation for policy analysis assuming profit maximization \citep{graveline_combining_2020,macewan_hydroeconomic_2017,howitt_calibrating_2012,rodriguez-flores_insights_2019}. In this study we implemented a PMP calibration that uses a stochastic data assimilation method to calibrate the economic parameters described by \citet{maneta_stochastic_2014} and \citet{maneta_satellite-driven_2020}. This calibration framework enables the update of the distribution of the calibration parameters every time data becomes available. More details on the calibration process are described in SM 1. 
 
 For the calibration of the model, we use statistical data on prices, costs, water applied and yields for each crop category and water supply by source from 1998 to 2015. After the last year of historical observations was incorporated in the recursive data assimilation process, the final ensemble with 400 samples of the PMP calibration parameters $\theta_{i} = [\mu_{i},\beta_{i,water},\beta_{i,land},\delta_{i},\lambda_{i,land},\lambda_{i,water},\bar{\lambda}_{land}]$ are used in the economic model. Equations 1-7 define the PMP net profit maximization problem for food production within the SWSD that is nested in the MOEA for a Bi-level optimization problem (Section \ref{sct:3.2}).
-
-
 
 \begin{align}
 \underset{{\substack{x_{i,land,t}\geq0\\x_{i,water,t}\geq0\\wat_{i,w,t}\geq0}}}{max} \sum_{i} \{p_{i,t} & \mu_{i}(\beta_{i,land} x^{\rho_i}_{i,land,t}+\beta_{i,water} x^{\rho_i}_{i,water,t})^{\delta_{i}/\rho_i} - (\omega_{i,land} + \lambda_{i,land} + \bar{\lambda}_{land}) x_{i,land,t} \notag \\[-16]
@@ -193,7 +191,7 @@ The groundwater depth change response function was calibrated using a Bayesian l
 GWD_{t} = GWD_{t-1} + \overline{\Delta GWD}_{t-1}
 \end{equation}
 
-\subsection{Stochastic time series}
+\subsection{Stochastic time series}\label{sct:2.2}
 
 To run the model dynamically, we build Monte Carlo time series for economic and hydrologic conditions that are used to force the HEM. Each time series starts at $t_{1}=2016$. In our analysis. we included simulated surface water supplies to the irrigation district (Figure S2 in SM 3) from the California’s Food-Energy-Water System simulation model (CALFEWS) \citep{zeff_californias_2021}. These were simulated with down-scaled data from seven of the ten Global Circulation Models (GCMs) suggested by \citet{pierce_climate_2018} (CCSM4, MIROC5, CanESM2, CNRM-CM5, GFDL-CM3, HadGEM2-CC and HadGEM2-ES), and using the Representative Concentration Pathway (RCP) 4.5 (moderate scenario) and 8.5 (high emissions scenario). 
 
@@ -227,66 +225,17 @@ Dynamic land and groundwater management decisions made at every yearly step $t$ 
 u_{t}^D = P^{D}(I_{t'}|\psi^{D})
 \end{align}
 
-In direct policy search, the use of RBFs has been shown to be an efficient way to represent complex sequential decisions. Recent applications include lake pollution control \citep{quinn_direct_2017}, reservoir operation \citep{giuliani_universal_2014, zatarain_salazar_balancing_2017,giuliani_state---art_2021}, sea-level rise protection \citep{garner_using_2018}, flood risk management \cite{wang} and financial risk management in water-energy systems \citep{gupta_can_2020,hamilton_stream_2022}. For this study we define the control policy function $P^D$ as set of cubic radial basis functions given by Equation 11.
+In direct policy search, the use of RBFs has been shown to be an efficient way to represent complex sequential decisions. Recent applications include lake pollution control \citep{quinn_direct_2017}, reservoir operations \citep{giuliani_universal_2014, zatarain_salazar_balancing_2017,giuliani_state---art_2021}, sea-level rise protection \citep{garner_using_2018}, flood risk management \citep{wang_incorporating_2023}, and financial risk management in water-energy systems \citep{gupta_can_2020,hamilton_stream_2022}. For this study, we define the control policy function $P^D$ as a set of cubic radial basis functions given by Equation \ref{eq:11}.
 
-\begin{align}
+\begin{align}\label{eq:11}
 u_{t}^D = \phi^{D}\left(\sum_{m=1}^M w_{m}^D \sum_{j=1}^J \left\lvert\dfrac{[I_{t'}]_{j}-c_{j,m}}{r_{j,m}}\right\rvert^{3}\right)
 \end{align}
 
-Where $\phi^{D}$ is an outer function, $w_{m}^D$ is the weight of M cubic radial basis functions. The weights can have values $ 0 \leq w_{m} \leq 1$ and are subject to $\sum_{m=1}^M m_{m}^D= 1$. The four decisions in the control policy share the same RBFs structure; hence the information vector $I_{t'}$ is shared for all decisions. Additionally, $c_{j,m} \in [-1,1]$ and $r_{j,m} \in (0,1]$ are the center and radius respectively shared by all the RBFs. $I_{t'}$ in Equation 12 is a vector with system state variables that inform the policies, where $\overline{GWD}_{t}$ is the normalized level to groundwater at the beginning of the year, $\overline{PCL}_{t-1}$ is the normalized area devoted for perennial crops production in the year $t-1$. $\overline{b}_{SW,t}$ is the normalized surface water available in year $t$. Normalization was performed using $k^{GWD}$, $k^{TL}$, $k^{SW}$ to obtain $\overline{GWD}_{t}$, $\overline{PCL}_{t-1}$, $\overline{b}_{SW,t}$ respectively summarized in Table 2.
+In Equation 11 $\phi^{D}$ is an outer function, $w_{m}^D$ is the weight of M cubic radial basis functions. The weights can have values $ 0 \leq w_{m} \leq 1$ and are subject to $\sum_{m=1}^M m_{m}^D= 1$. The four decisions in the control policy share the same RBFs structure; hence the information vector $I_{t'}$ is shared for all decisions. Additionally, $c_{j,m} \in [-1,1]$ and $r_{j,m} \in (0,1]$ are the center and radius respectively shared by all the RBFs. $I_{t'}$ in Equation \ref{eq:12} is a vector with system state variables that inform the policies, where $\overline{GWD}_{t}$ is the normalized level to groundwater at the beginning of the year, $\overline{PCL}_{t-1}$ is the normalized area devoted for perennial crops production in the year $t-1$. $\overline{b}_{SW,t}$ is the normalized surface water available in year $t$. Normalization was performed using $k^{GWD}$, $k^{TL}$, $k^{SW}$ to obtain $\overline{GWD}_{t}$, $\overline{PCL}_{t-1}$, $\overline{b}_{SW,t}$ respectively summarized in Table \ref{tbl:2}.
 
-\begin{align}
+\begin{align}\label{eq:12}
 I_{t'} = [\overline{GWD}_{t},\overline{PCL}_{t-1},\overline{b}_{SW,t}]
 \end{align}
-
-The function $\phi^{D}$ in Equation 11 can consist on two functions, unnormalize $\phi^{D,N}$ and constraint $\phi^{D,C}$, used to obtain the values of the management decisions in the control policy $u_{t}^D$. Being $z_{t}$ the argument in the $\phi^{D}$ function (Equation 11), the value of each decision is defined by the following equation.
-
-\begin{align}
-u^{D}_t = \phi^{D,C}(\phi^{D,N}(z_{t}))
-\end{align}
-
-For the groundwater pumping restriction policy ($u^{GWP}_t$) $\phi^{GWP,N}$ scales the groundwater that farmers will have available to pump between zero and the pumping capacity of the district $k^{GWP}$ (maximum observed pumping). $\phi^{GWP,C}$ constraints the groundwater pumping to be at least the difference between the water demand by perennial crops of the year $t-1$ and the surface water available in the year $t$. 
-
-\begin{align}
-z'_{t}=\phi^{GWP,N}(z_{t}) = k^{GWP}max(min(z_{t},1),0) 
-\end{align}
-
-\begin{align}
-u^{GWP}_t = \phi^{GWP,C}(z'_{t})= max(z'_{t},\underset{i \in PCL}{\sum} x_{i,water_{t\mh1}} - \; b_{SW,t})
-\end{align}
-
-In Equation 16 the unnormalize function ($\phi^{TL,N}$) scales the total land decision that farmers can produce in the district for the year t, between zero and $k^{TL}$, where $k^{TL}$ is the total land in the district (maximum observed produced land). As shown in Equation 15, $\phi^{TL,C}$ constraints the total land decision to be at least the land used by perennial crops in the the year $t-1$.
-
-\begin{align}
-z'_{t} = \phi^{TL,N}(z_{t}) = k^{TL}max(min(z_{t},1),0)
-\end{align}
-
-\begin{align}
-u^{TL}_t = \phi^{TL,C}(z'_{t})= max(z'_{t},\underset{i \in PC}{\sum} x_{i,land_{t\mh1}})
-\end{align}
-
-For the perennial crops planting restriction ($u^{PL}_t$), $\phi^{PL,N}$ scales the total land that can be allocated to perennial crops between zero and the total land available in the district ($k^{TL}$). $\phi^{PL,C}$ constraints the perennial restriction to be at least 95\% of the previous year perennial crops land, and it limits the expansion of perennial crops to 5\% more acreage from the previous year $t-1$. These restrictions are applied to ensure that solutions of the control policy are realistic to what has been observed the region.
-
-\begin{align}
-z'_{t} = \phi^{PL,N}(z_{t}) = k^{TL}max(min(z_{t},1),0)
-\end{align}
-
-\begin{align}
-u^{PL}_t = \phi^{PL,C}(z'_{t})= \begin{cases}
-      \underset{i\in{PC}}{\sum} x_{i,land_{t\mh1}}*1.05,  \text{\; if \, $z'_{t}$  $>$ $\underset{i\in PC}{\sum}x_{i,land_{t\mh1}}*1.05$}\\
-       \underset{i\in PC}{\sum} x_{i,land_{t\mh1}}*0.95, \text{\; elif \, $z'_{t}$  $<$ $\underset{i\in PC}{\sum}x_{i,land_{t\mh1}}*0.95$}\\
-      z'_{t}, \text{\; $otherwise$}
-\end{cases}     
-\end{align}
-
-Finally for the pumping fee ($u^{GWF}_t$), the function $\phi^{GWF}$ in Equation 20, scales the groundwater pumping fee that can have values between [0,$k^{GWF}$]. $k^{GWF}$ is set to be $\$0.5/m^3$, hence the upper boundary of the pumping fee is 0.5 USD per cubic meter. This fee sums to the groundwater pumping cost in the objective function of the economic model (Equation 1).
-
-\begin{align}
-u^{GWF}_t = \phi^{GWF,N}(z_{t}) = k^{GWF}max(min(z_{t},1),0)
-\end{align}
-
-The dynamic control policy is represented by the set of Equations 11 to 20, where the vector of structural parameters $\psi = [w^{D},c,r]$ of the RBFs is optimized. Since the information vector $I_{t'}$ of size $J$ is shared across decisions in $M$ number of RBF's the vectors of centers (c) and radii (r) are equal to $c=[c_{0,0},...,c_{J,M}]$ and $r=[r_{0,0},...,r_{J,M}]$.
-
 
 \begin{table}[width=.9\linewidth,cols=4,pos=h]
 \caption{Normalization factors used in the control policy}\label{tbl:2}
@@ -304,76 +253,141 @@ Normalization surface water  & $k^{SW}$ & $M m^3$ & 208 \\
 \end{table}
 
 
+The function $\phi^{D}$ in Equation \ref{eq:11} can consist on two functions, a scaling function $\phi^{D,N}$ and constraint function $\phi^{D,C}$. $z_{t}$ in Equation \ref{eq:13} is the argument to the $\phi^{D}$, where $\phi^{D,N}$ is used to first constraint $z_{t}$ values to lie between 0 and 1 and later scale them to the specific units of each irrigation management policy using the normalization factors in Table \ref{tbl:2}. $\phi^{D,C}$ is used to constraint the values of the candidate policy actions to be realistic considering other  water balance and land constraints.
+
+\begin{align} \label{eq:13}
+u^{D}_t = \phi^{D,C}(\phi^{D,N}(z_{t}))
+\end{align}
+
+For the groundwater pumping restriction policy ($u^{GWP}_t$), Equation \ref{eq:14} scales the groundwater that farmers will have available to pump between zero and the pumping capacity of the district $k^{GWP}$ (maximum observed pumping). Equation \ref{eq:15} constraints the groundwater pumping to be at least the difference between the water demand by perennial crops of the year $t-1$ and the surface water available in the year $t$. 
+
+\begin{align}\label{eq:14}
+z'_{t}=\phi^{GWP,N}(z_{t}) = k^{GWP}max(min(z_{t},1),0) 
+\end{align}
+
+\begin{align}\label{eq:15}
+u^{GWP}_t = \phi^{GWP,C}(z'_{t})= max(z'_{t},\underset{i \in PCL}{\sum} x_{i,water_{t\mh1}} - \; b_{SW,t})
+\end{align}
+
+In Equation \ref{eq:16}, where the scaling function ($\phi^{TL,N}$) results in the total land available that farmers can produce in the district for the year t and can have values between zero and the total land in the district $k^{TL}$ (maximum observed produced land). Additionally, Equation \ref{eq:17} constraints the total land decision to be at least the land used by perennial crops in the the year $t-1$.
+
+\begin{align}\label{eq:16}
+z'_{t} = \phi^{TL,N}(z_{t}) = k^{TL}max(min(z_{t},1),0)
+\end{align}
+
+\begin{align}\label{eq:17}
+u^{TL}_t = \phi^{TL,C}(z'_{t})= max(z'_{t},\underset{i \in PC}{\sum} x_{i,land_{t\mh1}})
+\end{align}
+
+Equation \ref{eq:18} governs actions associated with perennial crops planting restriction ($u^{PL}_t$), where $\phi^{PL,N}$ results in the total land that can be allocated to perennial crops production with value between zero and the total land available in the district ($k^{TL}$). In Equation \ref{eq:19}, $\phi^{PL,C}$ constraints the available land for perennial crops to be at least 95\% of the previous year perennial crops land, and it limits the expansion of perennial crops to no more than 5\% relative to the previous year $t-1$. These restrictions are applied to ensure that solutions of the perennial crop acreage control policy are realistic to what has been observed the region.
+
+\begin{align}\label{eq:18}
+z'_{t} = \phi^{PL,N}(z_{t}) = k^{TL}max(min(z_{t},1),0)
+\end{align}
+
+\begin{align}\label{eq:19}
+u^{PL}_t = \phi^{PL,C}(z'_{t})= \begin{cases}
+      \underset{i\in{PC}}{\sum} x_{i,land_{t\mh1}}*1.05,  \text{\; if \, $z'_{t}$  $>$ $\underset{i\in PC}{\sum}x_{i,land_{t\mh1}}*1.05$}\\
+       \underset{i\in PC}{\sum} x_{i,land_{t\mh1}}*0.95, \text{\; elif \, $z'_{t}$  $<$ $\underset{i\in PC}{\sum}x_{i,land_{t\mh1}}*0.95$}\\
+      z'_{t}, \text{\; $otherwise$}
+\end{cases}     
+\end{align}
+
+Finally for the pumping fee control action ($u^{GWF}_t$), the function $\phi^{GWF}$ in Equation \ref{eq:20}, scales the groundwater pumping fee that can have values between [0,$k^{GWF}$]. $k^{GWF}$ is set to be $\$0.5/m^3$, hence the upper boundary of the pumping fee is 0.5 USD per cubic meter. This fee sums to the groundwater pumping cost in the objective function of the economic model (Equation 1).
+
+\begin{align}\label{eq:20}
+u^{GWF}_t = \phi^{GWF,N}(z_{t}) = k^{GWF}max(min(z_{t},1),0)
+\end{align}
+
+The dynamic control policy is represented by the set of Equations 11 to 20, where the vector of structural parameters $\psi = [w^{D},c,r]$ of the RBFs is optimized. Since the information vector $I_{t'}$ of size $J$ is shared across decisions in $M$ number of RBF's the vectors of centers (c) and radii (r) are equal to $c=[c_{0,0},...,c_{J,M}]$ and $r=[r_{0,0},...,r_{J,M}]$.
+
+\clearpage
 
 \subsection{Bi-level Optimization Problem}\label{sct:3.2}
 
-This study implements two optimization processes (Figure 4). A MOEA is used to optimize the vector of structural parameters in the RBFs ($\Psi$). Each set of structural parameters define a control policy (Section 3.1) or set of decisions ($u^{D}$) which are assessed in the Hydro-economic model (Section 2.1) using N Monte Carlo realizations with times series of T years (Section 2.2). Hydro-economic model then finds optimal land and water allocation for the first five years of each time series resolution. Thus at t=5 the model starts the implementation of management decisions and the assessment of objectives. This was done to simulate flexible groundwater management described in Section 1 and Figure 1. The results of the process are aggregated in five performance metrics, representing the groundwater sustainability and economic goals of the GSA. The value of the objectives and constraints from the candidate policy assessment feedback to the MOEA to continue its optimization process. 
+A core contribution of this study is the bi-level optimization framework illustrated in Figure \ref{fig:4}. The Borg MOEA \citep{hadka_borg_2013,gupta_can_2020} is used to optimize the vector of structural parameters in the RBFs ($\Psi$). Each set of structural parameters define a control policy (Section \ref{sct:dps}) or set of annual groundwater management decisions ($u^{D}$) that are assessed using the HEM (Section \ref{sct:hem}) across N sampled Monte Carlo times series of T years (Section \ref{sct:2.2}). Within its evaluations, the HEM then finds optimal land and water allocations for the first five years of each time series. At year t=5, the HEM initiates the implementation of the DPS-based management decisions and the evaluation of the overall evaluation of the performance objectives. This framework provides a multi-scale abstraction of dynamic and adaptive flexible groundwater management that has direct relevance to addressing the sustainability challenges discussed in Section \ref{sct:1}. The bi-level optimization clarifies the performance trade-offs across the five objectives that represent the groundwater sustainability and economic goals of the GSA. 
 
-\begin{figure}[pos=h]
+\begin{figure}[pos=hbt!]
     \includegraphics[width=0.9\textwidth,center]{Diagram2}
-    \caption{Bi-level optimization problem schematic adapted from \citet{hamilton_stream_2022}. Rectangles represent the modules that contain optimization and simulation models (squares) and inputs/outputs (diamonds). Dashed arrows depict the Borg MOEA feed-back process where the values of objectives and constraint are from performance metrics of the Hydro-economic model  result of an implemented control policy.}
-    \label{fig:m1esh1}
+    \caption{Bi-level optimization problem schematic adapted from \citet{hamilton_stream_2022}. Rectangles represent the modules that contain optimization and simulation models (squares) and inputs/outputs (diamonds). Dashed arrows depict the Borg MOEA feed-back process where the values of objectives and constraint are from performance metrics of HEM result of an implemented control policy.}
+    \label{fig:4}
 \end{figure}
 
-The first level optimization consists in a multi-objective evolutionary optimization where five objectives are minimized or maximized, the decision variables are the structural parameters of the RBFs in the vector $\Psi$, used to parameterize the control policy. 
+The first level optimization focuses on the multi-objective evolutionary search to identify the trade-offs across the five performance objectives where the decision variables are the control policy parameters of the RBFs in the vector $\Psi$, used to parameterize the control policy. 
 
 \begin{align}
-\underset{\Psi}{argmin} = (-O_{avgtotrev}(\Psi),O_{avgdepth}(\Psi),-O_{minrev}(\Psi),O_{maxdepth\Delta}(\Psi),-O_{rel}(\Psi))
+\underset{\Psi}{argmin} = (-O_{avgrev}(\Psi),O_{avgdepth}(\Psi),-O_{worstrev}(\Psi),O_{worstdepth\Delta}(\Psi),-O_{depthrel}(\Psi))
 \end{align}
 
-The first objective $(O_{avgtotrev})$ is to maximize the average total revenues $\pi_{n,t}$  from the average total net revenue of N ensemble realizations with T years. This objective represents the economic objective of farmers of revenue maximization. A lower boundary constraint for this objective is defined to achieve at least an average total revenue greater or equal than \$11 billion. This restriction constrains the algorithms from finding unrealistic policies far from farmers preferences. 
+The first objective $(O_{avgrev})$ is to maximize the average total revenues  from the average total net revenue of N ensemble realizations with T years. This objective represents the economic objective of farmers of revenue maximization. A lower boundary constraint for this objective is defined to achieve at least an average total revenue greater or equal than \$11 billion. This restriction constrains the algorithms from finding unrealistic policies far from farmers preferences. 
 
 \begin{align}
-O_{avgtotrev} = \frac{1}{N}\sum_{n=1}^N(\sum_{t=5}^T \pi_{n,t})
+O_{avgrev} = \frac{1}{N}\sum_{n=1}^N(\sum_{t=5}^T \pi_{n,t})
 \end{align}
 
 
 \begin{align}
-O_{avgtotrev} \geq 11,000
+O_{avgrev} \geq 11,000
 \end{align}
 
-The second objective is the minimization of the average groundwater depth. The average groundwater depth is calculated over the years of management implementation implementation (T-5) for each Monte Carlo realization, and then the average of these are taken over all the N Monte Carlo realizations. 
+The second objective is the minimization of the average groundwater depth in meters bellow surface (m bls). The average groundwater depth is calculated over the years of management implementation (T-5) for each Monte Carlo realization, and then the average of these are taken over the N sampled Monte Carlo realizations. 
 
 \begin{align}
 O_{avgdepth} = \frac{1}{N}\sum_{n=1}^N(\frac{1}{T-5}\sum_{t=5}^T GWD_{n,t})
 \end{align}
 
-The third objective is to maximize the 5th percentile of minimum profits. This metric represents a \textit{max-min} goal, used to inform decision makers about the of the worst profits in a given year. Even though there are economic factors included in the stochastic ensemble that can be drivers of low economic revenues, management decisions can be the main causes of expected low profits particularly during dry years, as shown by \citet{rodriguez-flores_global_2022}. 
+The third objective is to maximize the 5th percentile of the minimum profits attained across the Monte Carlo samples. This metric represents a \textit{max-min} objective formulation that is used to inform decision makers about the worst case 5th percentile of profits achieved in a given year. Even though there are economic factors included in the stochastic ensemble that can be drivers of low economic revenues, management decisions can be the main factors driving poor profits particularly during dry years, as shown by \citet{rodriguez-flores_global_2022}. 
 
 \begin{align}
-O_{minrev} = Q5_{N} \bigg[\underset{t\in(5,...,T)}{min}[\pi_{n,t}]\bigg]
+O_{worstrev} = Q5_{N} \bigg[\underset{t\in(5,...,T)}{min}[\pi_{n,t}]\bigg]
 \end{align}
 
-The fourth objective is to minimize the 95th percentile of maximum groundwater depths. This objective represents a \textit{min-max} goal of the largest groundwater depth. The maximum groundwater depth level is taken over each implementation period and the Q95 operator takes the 95th percentile over all N the Monte Carlo  realizations. 
+The fourth objective is to minimize the 95th percentile of maximum groundwater depths change (m bls) attained across the Monte Carlo samples. This objective represents a \textit{min-max} objective formulation focused on identifying the outcomes with significant increases in groundwater depth. The maximum groundwater depth level change is evaluated over each annual management implementation period and the Q95 operator takes the 95th percentile over all of the sampled Monte Carlo  realizations. 
 
 \begin{align}
-O_{maxdepth\Delta} = Q95_{N} \bigg[\underset{t\in(5,...,T)}{max}[\overline{\Delta GWD}_{t-1}]\bigg]
+O_{worstdepth\Delta} = Q95_{N} \bigg[\underset{t\in(5,...,T)}{max}[\overline{\Delta GWD}_{t}]\bigg]
 \end{align}
 
-As explained in the Introduction during dry years the groundwater depth can go above the measurable objective, with the expectation that in wet years it will recover. However, the objective is to maximize the number of years that the groundwater depth is at most at the measurable objective level, limiting the groundwater level to go above the minimum threshold. Thus, the fifth objective is to maximize the average fraction of years (reliability) that the distance to the groundwater depth bellow or at the measurable objective ($GWD^{SGMA}$). We used the 2015 groundwater level from C2VSim-FG as a measurable objective as it was the deepest year in the recent 2012-2016 drought \citep{lund_lessons_2018}. Additionally, we included a constraint (Equation 28) that the reliability must be at least 20\% (i.e. one of every five years). 
+As explained in Section \ref{sct:1}, groundwater management allow groundwater depth fluctuate in the marginal of operational flexibility. During dry years the groundwater depth can go above the groundwater level requirement but not beyond the minimum threshold with the expectation that in wet years it will recover. Thus, the fifth objective is to maximize the average fraction of years (reliability) that the groundwater depth is at the level requirement ($GWD^{SGMA}$) or bellow. For illustration purposes we used the 2015 groundwater level from C2VSim-FG as a measurable objective as it was the deepest year in the  2012-2016 drought \citep{lund_lessons_2018}. Additionally, we included a constraint (Equation \ref{eq:28}) that the reliability must be at least 20\% (i.e., one of every five years). 
 
 \begin{align}
-O_{rel} = \frac{1}{N(T-5)}\sum_{n=1}^N(\sum_{t=5}^T \tau_{n,t})\; where\; \tau_{n,t} = \begin{cases}
+O_{depthrel} = \frac{1}{N(T-5)}\sum_{n=1}^N(\sum_{t=5}^T \tau_{n,t})\; where\; \tau_{n,t} = \begin{cases}
       1, \text{\; $GWD_{n,t}$  $\leq$ $GWD^{SGMA}$}\\
       0, \text{\; $GWD_{n,t}$ $>$ $GWD^{SGMA}$}\\
 \end{cases}      
 \end{align}
 
 
-\begin{align}
-O_{rel} \geq 0.2
+\begin{align}\label{eq:28}
+O_{depthrel} \geq 0.2
 \end{align}
 
 \subsection{Robustness and Scenario Discovery Analysis}
 
-Solutions in the Pareto front are each distinct control policies that prioritize a subset of objectives. Stakeholders can then choose acceptable policies based on their preferences. However, it is important that the policies can perform well in alternative states of the world that they aren’t optimized to. Thus, we reevaluate these policies across a broader sampling of deep uncertainties (Section 2.2) to quantify their robustness. Different metrics can be used to measure the robustness of each control policy which inherently represents a variety of farmers’ and water managers’ acceptability thresholds and their perception of risk (\cite{mcphail_robustness_2018}). For this study we selected the domain criterion satisfying metric  (\cite{schneller_decision_1983}) that quantifies the fraction of scenarios (rate of success) that achieve a minimum performance threshold, defined by stakeholders, from a larger set of states of the world different than the ones used in the EMODPS search. 
+The bi-level multi-objective optimization problem presented in the prior section provides a direct means for understanding the management trade-offs for the SWSD GSA through analysis of high quality representations of the resulting Pareto front. Solutions in the Pareto front are each distinct control policies that prioritize a subset of objectives. Stakeholders can then choose acceptable policies based on their preferences. However, it is important that these policies can perform well in alternative states of the world beyond those used in the optimization. Thus, we reevaluate these policies across a broader sampling of deep uncertainties (Section \ref{sct:2.2}) to quantify their robustness. Different metrics can be used to measure the robustness of each control policy which inherently represents a variety of farmers’ and water managers’ acceptability thresholds and their perception of risk \citep{mcphail_robustness_2018}. 
 
+Using all the policies from the resulting Pareto set these are assessed across  N=1,000 sampled Monte Carlo resolutions with T=30 years. Each time series has a set of surface water supplies, crop prices, electricity price, surface water price and calibration parameters. For this study, we selected the domain criterion satisficing metric \citep{schneller_decision_1983} that quantifies the fraction of scenarios (rate of success) that achieve a minimum performance threshold, defined by stakeholders, from a larger set of states of the world different than the ones used in the EMODPS search. To illustrate this process, we defined an example of performance criteria and rates of success, shown in Table \ref{tbl:3}, all of which a control policy must achieve in N resolutions and 25 years of management implementation to be considered robust. These performance criteria include a measurable objective and minimum threshold or maximum groundwater depth that should be reached in a year. Additionally, a minimum perennial trees land in a year is defined to be at least 50\% from the baseline (33,161 ha). 
 
+\begin{table}[width=.9\linewidth,cols=4,pos=h]
+\caption{Performance Criteria for selection of robust policies}\label{tbl:3}
+\begin{tabular*}{\linewidth}{@{} LLLL@{}}
+\toprule
+ Criteria  & Threshold & Units & Rate of Success \\ 
+\midrule
+Minimum Revenue in a year  & > 270 & M USD & $\geq$ 70\% \\
+Minimum Total Revenue   & > 12,500 & M USD & $\geq$ 80\% \\
+SGMA Objective Reliability & < 91.4 & m bls & $\geq$ 20\%  \\
+Minimum Threshold Reliability  & < 115 & m bls & $\geq$ 99\%  \\
+Minimum Perennial Trees Land in a year  & > 16,580 & hectares & $\geq$ 90\%  \\
+\bottomrule
+\end{tabular*}
+\end{table}
+
+Additionally, we perform a scenario discovery using . 
 
 \section{Computational Experiment}
 
-The search for  optimal RBFs parameters in EMODPS is a non-convex problem (\cite{giuliani_curses_2016}) that can be solved using heuristic methods. MOEAs are a popular tool for multi-objective optimization that iteratively improve a population of possible solutions  until the population reaches a stable Pareto front or set of  non-dominated solutions (\cite{coello_evolutionary_2007}). The solution space associated with this formulation is highly complex and characterized by characterized by a topology that nonlinear and non-convex. Thus, it is important to use the appropriate MOEA that is capable of searching such complex topologies. For this study we use the Borg MOEA (\cite{hadka_borg_2013}), a self-adaptive algorithm that employs probabilistic operators as $\epsilon$-dominance, adaptive population sizing and time continuation through $\epsilon$-progress. Borg MOEA has shown have better time efficiency, scalability, and controllability, as well as less sensitivity to its parameterizations compared to other MOEA algorithms (\cite{reed_evolutionary_2013,gupta_can_2020,zatarain_salazar_balancing_2017}). Since Borg MOEA is a stochastic algorithm we estimate Pareto-front solutions using ten different random seeds (i.e.  random initializations of the population) using the master-worker parallel configuration of Borg (\cite{hadka_large-scale_2015}). $\epsilon$-values (resolution) for each objective are summarized in SI Table S2. 
-
+The search for  optimal RBFs parameters in EMODPS is a non-convex problem \citep{giuliani_curses_2016} solved in this study using stochastic multi-objective evolutionary search. MOEAs are a popular tool for multi-objective optimization that iteratively improve a population of possible solutions  until the population reaches a high quality representation of the Pareto front composed of the non-dominated solutions \citep{coello_evolutionary_2007}.  For this study we use the Borg MOEA \citep{hadka_borg_2013}, a self-adaptive algorithm that employs probabilistic operators as $\epsilon$-dominance, adaptive population sizing and time continuation through $\epsilon$-progress. The Borg MOEA has shown have better time efficiency, scalability, and controllability, as well as less sensitivity to its parameterizations compared to other MOEA algorithms \citep{reed_evolutionary_2013,gupta_can_2020,zatarain_salazar_balancing_2017}. Since the Borg MOEA is a stochastic algorithm, we estimate Pareto-front solutions using ten different random seeds (i.e., random initializations of the population) using the master-worker parallel configuration of Borg \citep{hadka_large-scale_2015}. $\epsilon$-values (resolution) for each objective are summarized in SI Table S2. The performance of each Pareto-front is evaluated using their hypervolume \citep{hadka_} to prove that the search is reliable and effective given the number of function evaluations set at 50,000 for the experiment.  
 
 The economic model (Equations 1-8) was formulated using the Python package Pyomo (\cite{hart_pyomo_2011}) and solved using the non-linear programming solver IPOPT (\cite{wachter_implementation_2006}). The decision variables in the economic model are the allocation of land and water (surface water and groundwater) to seventeen crop groups resulting for a total of 68 decision variables for each time step t. Additionally at each time step a posterior predictive sample of groundwater depth change with 400 samples was estimated using the model results and trace generated using the probabilistic programming Python package PyMC  (\cite{salvatier_probabilistic_2016}).
 
@@ -395,7 +409,7 @@ To assess the adaptive capacity of the resulting policies to uncertain future sy
 \caption{Performance of the selected policies shown in Figure 5}
 \begin{tabular*}{\tblwidth}{@{} LLLLLL@{}}
  \toprule
- Solution & O_{avgtotrev} & O_{avgdepth} & O_{minrev} & O_{maxdepth\Delta} & O_{rel} \\ 
+ Solution & O_{avgrev} & O_{avgdepth} & O_{minrev} & O_{maxdepth\Delta} & O_{rel} \\ 
  \midrule
 X &  13,718 & 98.14 &  285 & 4.9 & 22\% \\
 Y &  13,053 & 87 & 267 & 3.6 & 90\% \\
@@ -416,24 +430,9 @@ During dry years, control policies allow pumping to offset lack of surface water
 
 Selecting different solutions along the Pareto approximate set allows assessment of their performance and provides insight of potential trade-offs of implementing management decisions. As shown in Figure 6 (g) implementing the control policy Y results in a lower average groundwater depth and larger number of years where the "measurable objective" (yellow line) is met. However, solutions X and Z achieved the measurable objective in wet years and prescribe higher cropland than solution Y. One key insight is that control policies stopped the decline in groundwater depth observed in the historical record (Figure 2), allowing the groundwater depth to reach a maximum depth level where is feasible to recover and from where is able to meet the measurable objective in wet years. Depending on the control policy, the maximum depth level ("minimum threshold") and the number of years that achieve the measurable objective change. This suggests GSAs can maintain the groundwater depth below the minimum threshold and this level conditions the recovery capacity and number of years that the measurable objective is achieved post-drought. However, policies need to be flexible enough to allow groundwater depth to recover during wet years contrary to what has been observed during the last decade \citep{liu_groundwater_2022,alam_post-drought_2021}.
 
-\subsection{Robustness Analysis}
+\subsection{Robustness Analysis and Scenario Discovery}
 
-As shown, different policies can result in different system performances, and selecting policies for further exploration can be difficult given the large set of solutions. However, by performing a robustness analysis we can filter the solution space to focus on policies that meet desirable minimum criteria, measurable objective, and economic goals that the GSA and farmers define. We assessed the Pareto set in Figure 5 with N=400 Monte Carlo resolutions each with T=30 years. Each time series has a set of surface water supplies, crop prices, electricity price, surface water price and calibration parameters (Section 2.2). To illustrate this process, we defined an example of performance criteria and rates of success, shown in Table 4, all of which a control policy must achieve in N resolutions times 25 years of management implementation to be considered robust. These performance criteria include a measurable objective and minimum threshold or maximum groundwater depth that should be reached in a year. Additionally, a minimum perennial trees land in a year is defined to be at least 50\% from the baseline (33,161 ha). 
-
-\begin{table}[width=.9\linewidth,cols=4,pos=h]
-\caption{Performance Criteria for selection of robust policies}
-\begin{tabular*}{\linewidth}{@{} LLLL@{}}
-\toprule
- Criteria  & Threshold & Units & Rate of Success \\ 
-\midrule
-Minimum Revenue in a year  & > 270 & M USD & $\geq$ 70\% \\
-Minimum Total Revenue   & > 12,500 & M USD & $\geq$ 80\% \\
-SGMA Objective Reliability & < 91.4 & m bls & $\geq$ 20\%  \\
-Minimum Threshold Reliability  & < 115 & m bls & $\geq$ 99\%  \\
-Minimum Perennial Trees Land in a year  & > 16,580 & hectares & $\geq$ 90\%  \\
-\bottomrule
-\end{tabular*}
-\end{table}
+As shown, different policies can result in different system performances, and selecting policies for further exploration can be difficult given the large set of solutions. However, by performing a robustness analysis we can filter the solution space to focus on policies that meet desirable minimum criteria, measurable objective, and economic goals that the GSA and farmers define. 
 
 Following these criteria we found twelve robust solutions out four hundred twenty six in the reference Pareto-set (Figure 7). These polices can be further explored to assess their performance under states of the world that can be of interest of stakeholders. To continue this exploration we selected two policies from the set of twelve robust policies: the policy with the largest total average revenue and the one with the lowest average groundwater depth from the 400 Monte Carlo resolutions. The performance of these robust policies was later assessed using the using the surface water deliveries with highest standard deviation (Figure S12), lowest average surface deliveries (Figure S13) and largest average deliveries (Figure S14). Results can be found in SI 8, where we show that even in the driest conditions robust policies are able to stop the positive rate of ground water depth increase, implementing adaptive policies that maintain the depth level within a margin of operational flexibility defined in the robustness criteria and achieving the measurable objective in wet years. 
 
