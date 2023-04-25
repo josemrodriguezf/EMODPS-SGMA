@@ -155,23 +155,23 @@ For the calibration of the model, we use statistical data on prices, costs, wate
 
 \begin{align}
 \underset{{\substack{x_{i,land,t}\geq0\\x_{i,water,t}\geq0\\wat_{i,w,t}\geq0}}}{max} \sum_{i} \{p_{i,t} & \mu_{i}(\beta_{i,land} x^{\rho_i}_{i,land,t}+\beta_{i,water} x^{\rho_i}_{i,water,t})^{\delta_{i}/\rho_i} - (\omega_{i,land} + \lambda_{i,land} + \bar{\lambda}_{land}) x_{i,land,t} \notag \\[-16]
-&  - (\omega_{SW,t}+ \lambda_{i,water} )wat_{i,SW,t} - (\omega_{GW,t}+ \lambda_{i,water} + u^{GWF}_{t})wat_{i,GW,t}\}
+&  - (\omega_{SW,t}+ \lambda_{i,water} )wat_{i,SW,t} - (\omega_{GW,t}+ \lambda_{i,water} + u^{GWF}_{t})wat_{i,GW,t}\} \label{eq:1}
 \end{align}
 
 \textit{subject to}
 \begin{gather}
-\sum_{i} x_{i,land,t} \leq u^{TL}_{t} \\
-\underset{i\in{PC}}{\sum} x_{i,land,t}  \leq  u^{PL}_{t}\\
-\underset{i\in{PC}}{\sum} x_{i,land,t}  \geq \underset{i\in{PC}}{\sum} x_{i,land,{t-1}} * 0.95 \\
-x_{i,water,t} = wat_{i,SW,t} + wat_{i,GW_t} \\
-\sum_{i} wat_{i,SW,t} \leq b_{SW,t}   \\
-\sum_{i} wat_{i,GW,t} \leq u^{GWP}_t \\
- x_{i,water,t} \geq \bar{x}_{i,water}*0.98
+\sum_{i} x_{i,land,t} \leq u^{TL}_{t} \label{eq:2}\\
+\underset{i\in{PC}}{\sum} x_{i,land,t}  \leq  u^{PL}_{t} \label{eq:3}\\
+\underset{i\in{PC}}{\sum} x_{i,land,t}  \geq \underset{i\in{PC}}{\sum} x_{i,land,{t-1}} * 0.95 \label{eq:4}\\
+x_{i,water,t} = wat_{i,SW,t} + wat_{i,GW_t} \label{eq:5}\\
+\sum_{i} wat_{i,SW,t} \leq b_{SW,t}   \label{eq:6}\\
+\sum_{i} wat_{i,GW,t} \leq u^{GWP}_t \label{eq:7}\\
+ x_{i,water,t} \geq \bar{x}_{i,water}*0.98 \label{eq:8}
 \end{gather}
 
-Where Equation 1 represents the net revenue maximizing objective function, allocating $x_{land,i}$, total water $x_{water,i}$, surface water $wat_{SW,i}$ and groundwater $wat_{GW,i}$ to each crop i (Figure S1). $p_{i,t}$ is the price per ton of crop $i$. Crop production in the first term of Equation 1 is represented by a Constant Elasticity of Substitution (CES) production function \citep{debertin_agricultural_2012,merel_fully_2010}, with the two inputs, land and water.  $\beta_{i,j=[land,water]}$ are the relative use of land and water. $\rho = (\sigma-1)/\sigma$, where $\sigma$ is the elasticity of substitution between inputs used to produce each crop. For this study we defined $\sigma = 0.17$ following \citet{howitt_calibrating_2012}. The scale parameter $\mu_{i}$ and $\delta_{i}$ are calibrated using the first order conditions of the first step of the PMP calibration process (Appendix A). The rest of the parameters used in the linear costs are the calibrated Lagrange multipliers $\lambda_{water},\lambda_{land}$, associated to the observed water and land allocation per crop calibration constraints, respectively. Variable costs are linear and include cost of land ($\omega_{i,land}$) and the unit price of surface water ($\omega_{SW,t}$). In contrast the volumetric cost of groundwater pumping is given by $\omega_{GW,t}$, which is a function of price of electricity ($\omega_{E,t}$), the groundwater depth ($GWD_t$) and other parameters related to the characteristics of the wells (Appendix B). Additionally, a per cubic meter $u^{GWF}_{t}$ pumping fee can be implemented on top of the pumping cost.
+Where Equation \ref{eq:1} represents the net revenue maximizing objective function, allocating $x_{land,i}$, total water $x_{water,i}$, surface water $wat_{SW,i}$ and groundwater $wat_{GW,i}$ to each crop i (Figure S1). $p_{i,t}$ is the price per ton of crop $i$. Crop production in the first term of Equation \ref{eq:1} is represented by a Constant Elasticity of Substitution (CES) production function \citep{debertin_agricultural_2012,merel_fully_2010}, with the two inputs, land and water.  $\beta_{i,j=[land,water]}$ are the relative use of land and water. $\rho = (\sigma-1)/\sigma$, where $\sigma$ is the elasticity of substitution between inputs used to produce each crop. For this study we defined $\sigma = 0.17$ following \citet{howitt_calibrating_2012}. The scale parameter $\mu_{i}$ and $\delta_{i}$ are calibrated using the first order conditions of the first step of the PMP calibration process (SM 1). The rest of the parameters used in the linear costs are the calibrated Lagrange multipliers $\lambda_{water},\lambda_{land}$, associated to the observed water and land allocation per crop calibration constraints, respectively. Variable costs are linear and include cost of land ($\omega_{i,land}$) and the unit price of surface water ($\omega_{SW,t}$). In contrast the volumetric cost of groundwater pumping is given by $\omega_{GW,t}$, which is a function of price of electricity ($\omega_{E,t}$), the groundwater depth ($GWD_t$) and other parameters related to the characteristics of the wells (SM 2). Additionally, a per cubic meter $u^{GWF}_{t}$ pumping fee can be implemented on top of the pumping cost.
 
-The PMP net revenue maximization problem is subject to land and water availability as well as the quantitative controls of groundwater and land use that are provided by the adaptive policies (Section \ref{sct:dps}). Equation 2 is a total land restriction where $u^{TL}_{t}$ is the total land use control that can be implemented in a year $t$. Equation 3 is an upper boundary perennial crops restriction $u^{PL}_{t}$ that influences the expansion or reduction of land allocated to perennial crops, where $PC \in$ \{Almonds and Pistachios, Subtropical, Other Deciduous and Vine\}. Maintaining the perennial crops removals to what has been observed historically, we add a perennial removal constraint (Equation 4) such that no more than 5 percent from the previous year perennial crops land can be allocated to other crops or taken out of production. Equation 5 is a mass balance restriction for each crop water use from both surface water and groundwater. Equation 6 is the surface water availability ($b_{SW,t}$) restriction. Equation 7 is the total groundwater pumping restriction where $u^{GWP}_{t}$ is the maximum allowed groundwater pumping decision. $u^{GWF}_{t}$, $u^{TL}_{t}$, $u^{PL}_{t}$, $u^{GWP}_{t}$ are the four management decision that this study assess formulated in the adaptive control policy (Section  3).  Finally, we allow up to 2\% deficit irrigation through Equation 8 which allows reductions in the applied water per  unit of land ($\bar{x}_{i,water}$) with respect to baseline calibration conditions. 
+The PMP net revenue maximization problem is subject to land and water availability as well as the quantitative controls of groundwater and land use that are provided by the adaptive policies (Section \ref{sct:dps}). Equation \ref{eq:2} is a total land restriction where $u^{TL}_{t}$ is the total land use control that can be implemented in a year $t$. Equation \ref{eq:3} is an upper boundary perennial crops restriction $u^{PL}_{t}$ that influences the expansion or reduction of land allocated to perennial crops, where $PC \in$ \{Almonds and Pistachios, Subtropical, Other Deciduous and Vine\}. Maintaining the perennial crops removals to what has been observed historically, we add a perennial removal constraint (Equation \ref{eq:4}) such that no more than 5 percent from the previous year perennial crops land can be allocated to other crops or taken out of production. Equation \ref{eq:5} is a mass balance restriction for each crop water use from both surface water and groundwater. Equation \ref{eq:6} is the surface water availability ($b_{SW,t}$) restriction. Equation \ref{eq:7} is the total groundwater pumping restriction where $u^{GWP}_{t}$ is the maximum allowed groundwater pumping decision. $u^{GWF}_{t}$, $u^{TL}_{t}$, $u^{PL}_{t}$, $u^{GWP}_{t}$ are the four management decision that this study assess formulated in the adaptive control policy (Section \ref{sct:dps}).  Finally, we allow up to 2\% deficit irrigation through Equation \ref{eq:8} which allows reductions in the applied water per  unit of land ($\bar{x}_{i,water}$) with respect to baseline calibration conditions. 
 
 \subsubsection{Groundwater Depth Response Function}
 
@@ -186,9 +186,10 @@ From C2VSIM-FG outputs we used the weighted-average groundwater depth level to a
     \label{fig:3}
 \end{figure}
 
-The groundwater depth change response function was calibrated using a Bayesian linear regression (Supplementaty Material C). The response function predicts the groundwater depth change each year as a function of total agricultural pumping. As shown by Equation 9, the ground water depth level at the beginning of the water year t ($GWD_{t}$) is calculated as the sum of the groundwater depth level at the beginning of the prior water year t-1 ($GW_{t-1}$)  and the median of the predictive posterior distribution for groundwater depth change ($\overline{\Delta GWD}_{t-1}$) estimated at the end of the water year t-1. By embedding this function into the economic model defining the pumping cost as a function of the groundwater depth (Appendix B) enables our ability to directly model the feed-back between food production and groundwater levels. 
+The groundwater depth change response function was calibrated using a Bayesian linear regression (SM C). The response function predicts the groundwater depth change each year as a function of total agricultural pumping. As shown by Equation \ref{eq:9}, the ground water depth level at the beginning of the water year t ($GWD_{t}$) is calculated as the sum of the groundwater depth level at the beginning of the prior water year t-1 ($GW_{t-1}$)  and the median of the predictive posterior distribution for groundwater depth change ($\overline{\Delta GWD}_{t-1}$) estimated at the end of the water year t-1. By embedding this function into the economic model defining the pumping cost as a function of the groundwater depth (SM 5) enables our ability to directly model the feed-back between food production and groundwater levels. 
 
 \begin{equation}
+\label{eq:9}
 GWD_{t} = GWD_{t-1} + \overline{\Delta GWD}_{t-1}
 \end{equation}
 
@@ -367,7 +368,7 @@ O_{depthrel} \geq 0.2
 
 The bi-level multi-objective optimization problem presented in the prior section provides a direct means for understanding the management trade-offs for the SWSD GSA through analysis of high quality representations of the resulting Pareto front. Solutions in the Pareto front are each distinct control policies that prioritize a subset of objectives. Stakeholders can then choose acceptable policies based on their preferences. However, it is important that these policies can perform well in alternative states of the world beyond those used in the optimization that can change the decision makers' preferences from their initial expected trade-offs performance \citep{herman_how_2015}. Thus, we reevaluate these policies across a broader sampling of deep uncertainties (Section \ref{sct:2.2}) to quantify their robustness. Different metrics can be used to measure the robustness of each control policy which inherently represents a variety of farmers’ and water managers’ acceptability thresholds and their perception of risk \citep{mcphail_robustness_2018}. 
 
-Using all the policies from the resulting Pareto set these are assessed across  N=1,000 sampled Monte Carlo resolutions with T=30 years. Each time series has a set of surface water supplies, crop prices, electricity price, surface water price and calibration parameters. For this study, we selected the domain criterion satisficing metric \citep{schneller_decision_1983} that quantifies the fraction of scenarios (rate of success) that achieve a minimum performance threshold, defined by stakeholders, from a larger set of states of the world different than the ones used in the EMODPS search. To illustrate this process, we defined an example of performance criteria and rates of success, shown in Table \ref{tbl:3}, all of which a control policy must achieve in N resolutions and 25 years of management implementation to be considered robust. These performance criteria include a measurable objective and minimum threshold or maximum groundwater depth that should be reached in a year. Additionally, a minimum perennial trees land in a year is defined to be at least 50\% from the baseline (33,161 ha). 
+Using all the policies from the Pareto approximate set, these are assessed across  N=1,000 sampled Monte Carlo resolutions with T=30 years. Each time series has a set of surface water supplies, crop prices, electricity price, surface water price and calibration parameters. For this study, we selected the domain criterion satisficing metric \citep{schneller_decision_1983} that quantifies the fraction of scenarios (rate of success) that achieve a minimum performance threshold, from a larger set of states of the world different than the ones used in the EMODPS search. To illustrate this process, we defined an example of performance criteria and rates of success, shown in Table \ref{tbl:3}, all of which a control policy must achieve in N resolutions and 25 years of management implementation to be considered robust. These performance criteria include a minimum total revenue and a groundwater depth requirement that the flexible management is expected to reach during wet years, as shown in Figure \ref{fig:1}. Additionally, a minimum perennial trees land in a year is defined to be at least 50\% from the baseline (33,161 ha). 
 
 \begin{table}[width=.9\linewidth,cols=4,pos=h]
 \caption{Performance Criteria for selection of robust policies}\label{tbl:3}
@@ -376,38 +377,13 @@ Using all the policies from the resulting Pareto set these are assessed across  
  Criteria  & Threshold & Units & Rate of Success \\ 
 \midrule
 Minimum Total Revenue   & > 12,500 & M USD & $\geq$ 80\% \\
-Groundwater Depth  & < 92 & m bls & $\geq$ 20\%  \\
+Groundwater Depth Requirement & < 92 & m bls & $\geq$ 20\%  \\
 Minimum Perennial Trees Land  & > 40,971 & hectares & $\geq$ 90\%  \\
 \bottomrule
 \end{tabular*}
 \end{table}
 
-Identifying conditions in the system that make a robust policy fail is . In order to identify the vulnerabilities of solutions to fail or perform poorly we use scenario discovery commonly perform to aid robust decision making \citep{kasprzyk_many_2013}. to determine the ranges of system conditions that lead to undesirable objectives performance. Scenario discovery supports decision making providing insight and visualization to better understand , this is particularly important in systems with non-linearity where can be hard to map failure or success given system conditions. For this study, we use the Patient Rule Induction Method (PRIM) \citep{fried} . To provide insight to decision makers on what factors they shuld get more information or , we can rank the inputs importance regarding how they affect the success of a policy. To obtain this diagnostic we perform , allowing us to rank inputs in their impact to meet the performance criteria \ref{tbl:3}, additionally we can perform the same analysis for individual objectives. 
-
-\citep{kasprzyk_many_2013,quinn_direct_2017}
-
-%%
-The ﬁnal step in MORDM is to use scenario discovery (Bryant &
-Lempert, 2010) to determine what ranges of model parameters lead
-to poor performance. Two commonly used factor mapping ap-
-proaches include the Patient Rule Induction Method, or PRIM
-(Friedman & Fisher, 1999), and Classiﬁcation and Regression Trees,
-or CART (Breiman et al., 1984). Both of these methods assume poor
-performance can be explained by independent combinations of
-input parameter ranges, and therefore fail to capture non-linear
-interactions between model parameters that can lead to unac-
-ceptable performance. Recent approaches have improved upon
-PRIM by ﬁrst performing Principal Components Analysis (PCA) and
-then applying PRIM to the rotated datasets (Dalal et al., 2013).
-However, this modiﬁcation only addresses the orthogonality
-constraint of PRIM, not its linearity constraint. For this reason, we
-perform a visual factor mapping sensitivity analysis to identify
-which joint ranges of lake model parameters cause particular
-management plans to fail. This approach enables a better treatment
-of the nonlinear nature of the lake model's irreversible tipping
-point. The results of this analysis are given in Section 5.3.2.
-%%
-
+In order to identify the vulnerabilities of solutions that cause failure to meet the robust performance criteria or poor performance, we use scenario discovery commonly perform in robust decision making \citep{kasprzyk_many_2013,lempert_identifying_2010}. This analysis is particularly important in systems with non-linearities where can be hard to map inputs - objective performance given the uncertainties in the system that change every year. For this study, we use the Patient Rule Induction Method (PRIM) \citep{friedman_bump_1999,kwa}, a statistical learning algorithm. This method provides factor mapping and visualization to identify uncertain input ranges that result in an outcome space of particular interest. PRIM algorithm calculates scenario boxes that describe values between two inputs that cause a policy to meet the robust criteria (Table \ref{tbl:3}), using the results from SOWs used in the robustness analysis. Additionally, we can identify the vulnerabilities of the policy ranking the most relevant uncertain inputs that impacted a policy to fail meeting the robustness criteria or a single objective. Using the exploratory modeling and analysis workbench \citep{kwakkel_exploratory_2017} we perform a feature scoring using extra trees algorithm \citep{geurts_extremely_2006}. 
 
 \section{Computational Experiment}
 
@@ -422,11 +398,9 @@ We performed the bi-level optimization process for an ensemble of N = 100 Monte 
 Figure \ref{fig:5} shows Pareto-approximate reference set that spans different trade-offs among the five objectives in the problem. In the figure each triangle represents the objective values associated with selected control policies ($\Psi$ values). The size of the triangle depicts the 95th percentile of the maximum groundwater depth changes in a year, and the color gradient depicts the 5th percentile of the minimum revenue in a year. The star represents a hypothetical the ideal solution that would allow for the shortest average groundwater depth while providing the highest possible revenue across the sustainable management implementation period. Characteristic behavior emerges particularly as average groundwater depth decreases, economic revenues (and minimum revenues) decrease as well. Average groundwater depth decreases also correspond to an increase in the reliability to meet the groundwater level requirement. However, for some policies to attain one hundred percent reliability, they limit groundwater pumping, including during dry years, which results in lower total and minimum revenues. These solutions represent are unlikely to be applied in the SWSD, since recovering the groundwater depth to be bellow the level requirement in all years is not the objective but rather a flexible management, explained in Section \ref{sct:1}. Maximum groundwater depth change (size of the triangle) reach values as the maximum depth change observed in the historical record (Figure S7 in SM), highlighting the capacity of the policies to avoid larger depth changes even in drier future conditions. However, as maximum depth changes reduce the Pareto-front shifts downwards resulting in lower average revenues. 
 
 \begin{figure}[htb!]
-    \includegraphics[width=0.8\textwidth,center]{./figs/3d_plot.png}
+    \includegraphics[width=0.7\textwidth,center]{./figs/3d_plot.png}
     \caption{Pareto approximate set from the EMODPS experiment} \label{fig:5}
 \end{figure}
-
-\clearpage
 
 To assess the adaptive capacity of the resulting policies to uncertain surface water supplies and economic conditions, we selected three policies that achieve different trade-offs in the Pareto-reference set Figure \ref{fig:5}. The selected policies for further analysis are the policy with the largest average total revenue (MaxRev), the policy with lowest average groundwater depth (MinDepth), and a policy with \%60 average reliability of meeting the groundwater depth requirement (\%60Rel). The objectives performance from the selected policies is summarized in Table \ref{tbl:4}. These solutions contain four different DPS-based irrigation management policies (Section \ref{sct:dps}) that would adapt under system state conditions. We asses their performance using the driest, wettest and largest standard deviation from the Monte Carlo sampled SOWs used in the evolutionary search (Section \ref{sct:2.2}). 
 We allow PMP to run without any DPS control policy for the first five years followed by a 25 years period of DPS control policy implementation.  
@@ -456,7 +430,7 @@ During dry years, control policies allow pumping to offset lack of surface water
 
 Selecting different solutions along the Pareto approximate set allows assessment of their performance and provides insight of potential trade-offs of implementing management decisions. As shown in Figure 6 panel (g) implementing the MinDepth control policy results in a constant recovery of the groundwater depth, thus a larger groundwater depth requirement reliability. However, solutions MaxRev and \%60Rel achieved the measurable objective in wet years and prescribe higher cropland than the MinDepth solution. One key insight is that control policies stopped the decline in groundwater depth observed in the historical record (Figure \ref{fig:2}), allowing the groundwater depth to reach a maximum depth level where is feasible to recoverand meet the groundwater depth requirement. Depending on the control policy, the largest groundwater depth and the number of years that achieve the measurable objective change. This suggests GSAs achieve the flexible management that maintain the groundwater depth at a level where its capable to achieve the groundwater depth requirement post-drought. However, policies need to be flexible enough to allow groundwater depth to recover during wet years contrary to what has been observed during the past decades \citep{liu_groundwater_2022,alam_post-drought_2021}. Evolution of irrigation management policies and system performance in wet and dry SOWs are shown in SM Figure S.
 
-\subsection{Robustness Analysis and Scenario Discovery}
+\subsection{Robustness and Scenario Discovery Analysis}
 
 As explained in Section \ref{sct:3.3} solutions in the Pareto-approximate set are re-evaluated in 1,000 alternative SOWs and we calculate their robustness as percent of SOWs that the three preference criteria and preference success rate are met, summarized in Table \ref{tbl:3}. These result in twenty four robust solutions out four hundred twenty six in the reference Pareto approximate set shown in Figure \ref{fig:7}. We selected two robust policies from the robust solutions set for further exploration, the solution with lowest average minimum depth (RobustMinDepth) and the solution the largest average total revenues (RobustMinDepth) from the re-evaluation across 1,000 alternative SOWs. 
 
