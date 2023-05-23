@@ -45,7 +45,7 @@
 
 \begin{center}
 \Large
-Implementing adaptive operating policies to achieve economic, and groundwater sustainability goals in agriculture using Evolutionary Multi-Objective Direct Policy Search \\ 
+Identifying robust adaptive irrigation operating policies to balance deeply uncertain economic food production and groundwater sustainability trade-offs \\ 
 \vspace{0.5cm}
 Supplementary Material
 \end{center}
@@ -113,7 +113,7 @@ The PMP maximization problem defined by the set of Equations S1 can be formulate
 
 Where $\tilde{x}_{i,land}$, $\tilde{x}_{i,water}$, $\tilde{y}_{i}$ are the observed land use, water use and yield for each crop respectively, $\tilde{y}_{i,water}$ is the crop specific water yield elasticity and $\tilde{\eta}_i$ is the exogenous own price crop supply elasticity. $\rho_{i}=(\sigma_{i}-1)/\sigma_{i}$ where $\sigma$ represents the elasticity of substitution between land and water, which was fixed to $\sigma=0.17$ as shown to be a good approximation (\cite{howitt_calibrating_2012}). Equations A.2 are embeded in a stochastic assimilation process to calibrate recursively the calibration parameters, in the vector $\theta_{i} = [\mu_{i},\beta_{i,water},\beta_{i,land},\delta_{i},\lambda_{i,land},\lambda_{i,water},\bar{\lambda}_{land}]$, following the stochastic data assimilation framework described by \textcite{maneta_satellite-driven_2020}. 
 
-Data used in the calibration are from various sources, spatial scales, and specific crops or groups of crops. This lack of specific spatial and crop type resolution creates uncertainty in the estimators. Data sources include crop grouping categories defined by the Department of Water Resources (DWR) that reports water applied to each group by county and year, different individual crops are included in each group for which we selected a price and yield from  \textcite{usda_national_2020}. Agricultural production costs were obtained from UC Davis Cost and Return Studies (\cite{uc_davis_current_2015})  using average costs from crops within each group. Historical annual land use was obtained from the Kern County Spatial Data (\cite{kcdams_kern_2020}). Own-price crop supply elasticity were obtained from (\cite{rodriguez-flores_global_2022}). Finally, the yield elasticity to water was calculated following the process in SM 4. All data sources are summarized in Table S1.
+Data used in the calibration are from various sources, spatial scales, and specific crops or groups of crops. This lack of specific spatial and crop type resolution creates uncertainty in the estimators. Data sources include crop grouping categories defined by the Department of Water Resources (DWR) that reports water applied to each group by county and year, different individual crops are included in each group for which we selected a price and yield from  \textcite{usda_national_2020}. Agricultural production costs were obtained from UC Davis Cost and Return Studies (\cite{uc_davis_current_2015})  using average costs from crops within each group. Historical annual land use was obtained from the Kern County Spatial Data (\cite{kcdams_kern_2020}). Own-price crop supply elasticity were obtained from (\cite{rodriguez-flores_global_2022}). Finally, the yield elasticity to water was calculated following the process in SM 2.1. All data sources are summarized in Table S1.
 
 \begin{center}
 \begin{tabular}{ |c|c|c|c| } 
@@ -127,7 +127,7 @@ Data used in the calibration are from various sources, spatial scales, and speci
  Land cost & $\omega_{i,land}$ & $\$/ha$ & \textcite{uc_davis_current_2015} \\
  Pumping cost & $\omega_{GW,t}$ & $\$/m^3$ & Pumping cost function (Section A.2)\\ 
  Crop yield & $y_{i}$ & $ton/ha$ & \textcite{usda_national_2020} \\
- Crop yield-water elasticity & $\tilde{y}_{i,water}$ & - & SM 4 \\ 
+ Crop yield-water elasticity & $\tilde{y}_{i,water}$ & - & SM 2.1 \\ 
  Crop supply elasticity & $\tilde{\eta}_i$ & - & \textcite{rodriguez-flores_global_2022} \\
  Applied water & $\tilde{x}_{i,water}$ & $m^3/ha$ & \textcite{dwr_agricultural_2020} \\
  Land use & $\tilde{x}_{i,land}$ & $ha$ & \cite{kcdams_kern_2020}\footnote{Kern County Department Of Agriculture And Measurement Standards}\\
@@ -136,20 +136,9 @@ Data used in the calibration are from various sources, spatial scales, and speci
 \captionof{table}{Data sources for Economic model calibration}
 \end{center}
 
-Following the data-assimilation process we first set the ensemble size with 400 samples using the first year of observations (1999). We began by stabilizing the model parameters to start with correct values spinning up the data assimilation process using observations from 1999 until the ensemble stabilized. We found that the parameters stabilized with 40 repetitions of the spin up process, after which we use observations from 2000 to 2015 to sequentially perform the data assimilation process. We tune manually the parameters used in the Kalman filter, variance smoothing parameter and background parameter ensemble variance, until we find the best results. With the final calibration, we found that the model closely reproduces the historical allocation of land and water to all the crops but for the Cotton category which has been observed a decline in acreage over the observed years. However, the calibration closely resembles the last years of historical data which show a clear positive trend in perennial tree crops SM 6. 
+Following the data-assimilation process we first set the ensemble size with 400 samples using the first year of observations (1999). We began by stabilizing the model parameters to start with correct values spinning up the data assimilation process using observations from 1999 until the ensemble stabilized. We found that the parameters stabilized with 40 repetitions of the spin up process, after which we use observations from 2000 to 2015 to sequentially perform the data assimilation process. We tune manually the parameters used in the Kalman filter, variance smoothing parameter and background parameter ensemble variance, until we find the best results. With the final calibration, we found that the model closely reproduces the historical allocation of land and water to all the crops but for the Cotton category which has been observed a decline in acreage over the observed years. However, the calibration closely resembles the last years of historical data which show a clear positive trend in perennial tree crops SM 5. 
 
-\section{Groundwater Pumping Cost}
-
-The unitary (\$1/$m^3$) pumping cost $\omega_{GW}$ is given by the Equation 34, where $\omega_{pump}= \$200,000$ is the capital cost of the well, $A_{service}=80$ ha is the assumed pumping service area, $\widetilde{x}_{water}=4,933 m^3/ ha$ is the assumed average irrigation demand per unit area, $i=0.05$ is the discount rate, $n=20$ is the pump years lifetime, $\zeta= \$6.6\times10^{-5} /m^3 m$ is the variable operation and maintenance costs for the pump, $\omega_{E,t} \$/kWh$ is the price of electricity, $\eta_{pump}=0.7$ is the average pump efficiency, $GWD_t$ is the potentiometric depth (meters) of the irrigation district in the year $t$, Q is the assumed pumping rate $0.1261 m^3/s$, C is the Hazen-Williams coefficient, pipe is assumed to be cast-iron or steel for which C = 0.12680, and $d=0.4 m$ is the pipe diameter.
-
-\begin{equation}
-\begin{gathered}
-\omega_{GW,t} = \left( \dfrac{\omega_{pump}}{A_{service} \widetilde{x}_{water}} \dfrac{i(1+i)^n}{(1+i)^n-1}\right) 
-+ \left(\zeta+\dfrac{\omega_{E,t}}{\eta_{pump}} \right) \left(GWD_t +10.67  \dfrac{GWD_t Q^{1.852}}{C^{1.852} d^{4.8704}}\right)
-\end{gathered}
-\end{equation}    
-
-\section{Yield Elasticity to Water Use}
+\subsection{Yield Elasticity to Water Use}
 
 Crop yield elasticity to water ($\tilde{y}_{i,water}$) represents the response of yield to changes in water applied, as percent change in yield to a percent change in applied water. To estimate this parameter we used two approaches, first for crops Alfalfa, Corn, Almonds (in Almonds and Pistachios category), and Wheat (in Grain category) we used the VIC-CropSyst model (\cite{malek_viccropsyst-v2_2017}) calibrated for a spatial grid in the study area and using different irrigation systems. Crop yield responses were estimated by reducing applied water (deficit irrigation), responses from VIC-CropSyst (V-CS) were later used to estimate the crop yield water elasticity ($\tilde{y}_{i,water}$) using following a sigmoidal yield response function (Equation S1) described by \textcite{merel_regional_2014}. We fitted the sigmoidal response function using a nonlinear regression solving for $\alpha_{i,1},\alpha_{i,2},\alpha_{i,3}$. With the estimates from solving this regression the crop-specific yield response to water changes was later calculated using Equation S2. using the reference water applied ($\tilde{x}_{i,water}$) and reference yield ($\tilde{y}_{i}$) used in the PMP calibration (average of the historical). 
 
@@ -167,8 +156,19 @@ For the rest of the crops we used the applied water by crop category from \textc
 ln(\tilde{y}_{i,t}) = \tilde{y}_{i,water}ln(\tilde{x}_{i,water,t})
 \end{flalign}
 
-\section{Calibration Groundwater Depth Response Function}
 
+\section{Groundwater Pumping Cost}
+
+The unitary (\$1/$m^3$) pumping cost $\omega_{GW}$ is given by the Equation 34, where $\omega_{pump}= \$200,000$ is the capital cost of the well, $A_{service}=80$ ha is the assumed pumping service area, $\widetilde{x}_{water}=4,933 m^3/ ha$ is the assumed average irrigation demand per unit area, $i=0.05$ is the discount rate, $n=20$ is the pump years lifetime, $\zeta= \$6.6\times10^{-5} /m^3 m$ is the variable operation and maintenance costs for the pump, $\omega_{E,t} \$/kWh$ is the price of electricity, $\eta_{pump}=0.7$ is the average pump efficiency, $GWD_t$ is the potentiometric depth (meters) of the irrigation district in the year $t$, Q is the assumed pumping rate $0.1261 m^3/s$, C is the Hazen-Williams coefficient, pipe is assumed to be cast-iron or steel for which C = 0.12680, and $d=0.4 m$ is the pipe diameter.
+
+\begin{equation}
+\begin{gathered}
+\omega_{GW,t} = \left( \dfrac{\omega_{pump}}{A_{service} \widetilde{x}_{water}} \dfrac{i(1+i)^n}{(1+i)^n-1}\right) 
++ \left(\zeta+\dfrac{\omega_{E,t}}{\eta_{pump}} \right) \left(GWD_t +10.67  \dfrac{GWD_t Q^{1.852}}{C^{1.852} d^{4.8704}}\right)
+\end{gathered}
+\end{equation}    
+
+\section{Calibration Groundwater Depth Response Function}
 
 \begin{figure}[H]
 \centering
@@ -361,7 +361,7 @@ The following figures show the performance of the selected robust solutions in S
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{./figs/robust_dry_performance.png}
-    \caption{Performance Robust Policies under driest average surface water deliveries (MIROC 8.5). Panel (a) shows the surface water deliveries. Panels (b) - (e) show the dynamic decisions in the control policy. Panels (f)-(j) show the performance of the food-water system. The orange line in Sub-figure (g) depicts the measurable objective used in the experiment}
+    \caption{Performance Robust Policy under driest average surface water deliveries (MIROC 8.5). Panel (a) shows the surface water deliveries. Panels (b) - (e) show the dynamic decisions in the control policy. Panels (f)-(j) show the performance of the food-water system. The orange line in Sub-figure (g) depicts the measurable objective used in the experiment}
     \label{fig:m1esh1}
 \end{figure}
 
@@ -370,7 +370,7 @@ The following figures show the performance of the selected robust solutions in S
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{./figs/robust_wet_performance.png}
-    \caption{Performance Robust Policies under largest (wet) average surface water deliveries (CNRM-CM5 8.5). Panel (a) shows the surface water deliveries. Panels (b) - (e) show the dynamic decisions in the control policy. Panels (f)-(j) show the performance of the food-water system. The orange line in Sub-figure (g) depicts the measurable objective used in the experiment}
+    \caption{Performance Robust Policy under largest (wet) average surface water deliveries (CNRM-CM5 8.5). Panel (a) shows the surface water deliveries. Panels (b) - (e) show the dynamic decisions in the control policy. Panels (f)-(j) show the performance of the food-water system. The orange line in Sub-figure (g) depicts the measurable objective used in the experiment}
     \label{fig:m1esh1}
 \end{figure}
 
